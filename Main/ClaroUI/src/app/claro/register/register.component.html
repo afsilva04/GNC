@@ -1,0 +1,26 @@
+<div fxLayout="row" fxLayoutAlign="center center" style="height: 100%;">
+  <div class="register mat-elevation-z12">
+    <div class="register-header" fxLayout="column" fxLayoutAlign="center center">
+      <img src="assets/img/claro.png" style="width: 90px">
+    </div>
+    <form #form="ngForm" (ngSubmit)="register()">
+      <div class="register-content" fxLayout="column" fxLayoutAlign="start stretch">       
+        <md-input-container>
+          <input mdInput placeholder="Correo" type="text" id="Email" name="Email" required [(ngModel)]="Email"
+          pattern="^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$">
+        </md-input-container>
+        <md-input-container>
+          <input mdInput placeholder="Contraseña" type="password" id="Password" name="Password" required [(ngModel)]="Password" minlength="6">
+        </md-input-container>
+        <md-input-container>
+          <input mdInput placeholder="Contraseña (Confirmar)" type="password" id="ConfirmPassword" name="ConfirmPassword" required [(ngModel)]="ConfirmPassword"  minlength="6">
+        </md-input-container>
+        <div class="extra-options" fxLayout="row" fxLayoutAlign="center center">
+          <md-checkbox class="remember-me" id="terms">Acepto <a (click)="openDialogTerms()">terminos y condiciones.</a></md-checkbox>
+        </div>
+        <button color="primary" md-raised-button [disabled]="!form.valid" id="btnRegister">CREAR CUENTA</button>
+        <p class="note">Ya tienes una cuenta?<br/> <a [routerLink]="['/login']">Ingresa aquí</a></p>
+      </div>
+    </form>
+  </div>
+</div>

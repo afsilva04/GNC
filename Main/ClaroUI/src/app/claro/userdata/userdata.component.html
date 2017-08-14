@@ -1,0 +1,625 @@
+<div fxLayout="row" fxLayoutAlign="center center" class="contentuserdata">
+  <md-card fxFlex="90%" style="padding: 0;">
+    <md-toolbar color="primary">Ingresar infromación</md-toolbar>
+    <md-card-content>
+      <md-tab-group [selectedIndex]="selectedIndex">
+        <md-tab label="Datos generales">
+          <form #form="ngForm">
+            <div fxLayout="column" style="padding: 16px;">
+              <div fxLayout="column" fxLayout.gt-sm="row">
+                <md-input-container fxFlex>
+                  <input mdInput name="identification" id="identification" [(ngModel)]="dataGeneral.identification" required ngModel placeholder="Identificación">
+                </md-input-container>
+                <md-input-container fxFlex>
+                  <input mdInput name="firstname" id="firstname" [(ngModel)]="dataGeneral.firstname" placeholder="Nombres" required>
+                </md-input-container>
+                <md-input-container fxFlex>
+                  <input mdInput name="lastname" id="lastname" [(ngModel)]="dataGeneral.lastname" placeholder="Apellidos" required ngModel>
+                </md-input-container>
+              </div>
+
+              <div fxLayout="column" fxLayout.gt-sm="row">
+
+                <md-input-container fxFlex>
+                  <input mdInput [mdDatepicker]="birthdate" name="birthdate" id="birthdate" [(ngModel)]="dataGeneral.birthdate" placeholder="Fecha de Nacimiento"
+                    required ngModel>
+                  <button mdSuffix [mdDatepickerToggle]="birthdate"></button>
+                </md-input-container>
+                <md-datepicker #birthdate></md-datepicker>
+
+                <div fxFlex>
+                  <md-input-container>
+                    <input mdInput placeholder="Ciudad de Nacimiento" id="cityBirth" name="cityBirth" [(ngModel)]="dataGeneral.cityBirth" [mdAutocomplete]="reactiveAuto"
+                      [formControl]="stateCtrl">
+                  </md-input-container>
+                  <md-autocomplete #reactiveAuto="mdAutocomplete" [displayWith]="displayFn">
+                    <md-option *ngFor="let state of reactiveStates | async" [value]="state">
+                      <span>{{ state.name }}</span>
+                      <span class="demo-secondary-text"> ({{state.code}}) </span>
+                    </md-option>
+                  </md-autocomplete>
+                </div>
+                <md-select placeholder="Sexo" [(ngModel)]="dataGeneral.sex" name="sex" id="sex" fxFlex required>
+                  <md-option *ngFor="let sex of sexs" [value]="sex.value">
+                    {{sex.viewValue}}
+                  </md-option>
+                </md-select>
+              </div>
+
+              <div fxLayout="column" fxLayout.gt-sm="row">
+                <div fxFlex>
+                  <md-input-container>
+                    <input mdInput placeholder="Ciudad de residencia" id="cityResidence" name="cityResidence" [(ngModel)]="dataGeneral.cityResidence"
+                      [mdAutocomplete]="reactiveAuto" [formControl]="stateCtrl">
+                  </md-input-container>
+                  <md-autocomplete #reactiveAuto="mdAutocomplete" [displayWith]="displayFn">
+                    <md-option *ngFor="let state of reactiveStates | async" [value]="state">
+                      <span>{{ state.name }}</span>
+                      <span class="demo-secondary-text"> ({{state.code}}) </span>
+                    </md-option>
+                  </md-autocomplete>
+                </div>
+                <md-select placeholder="Estrato" [(ngModel)]="dataGeneral.stratum" name="stratum" id="stratum" fxFlex>
+                  <md-option *ngFor="let stratum of stratums" [value]="stratum.value">
+                    {{stratum.viewValue}}
+                  </md-option>
+                </md-select>
+                <md-input-container fxFlex>
+                  <input mdInput name="phone" id="phone" [(ngModel)]="dataGeneral.phone" placeholder="Número de teléfono fijo">
+                </md-input-container>
+              </div>
+
+              <div fxLayout="column" fxLayout.gt-sm="row">
+                <md-input-container fxFlex>
+                  <input mdInput name="cellphone" id="cellphone" [(ngModel)]="dataGeneral.cellphone" placeholder="Número de celular" required
+                    ngModel>
+                </md-input-container>
+                <md-select placeholder="Estado civil" [(ngModel)]="dataGeneral.civilstatus" name="civilstatus" id="civilstatus" fxFlex>
+                  <md-option *ngFor="let civilstatus of civilstatuslist" [value]="civilstatus.value">
+                    {{civilstatus.viewValue}}
+                  </md-option>
+                </md-select>
+                <md-select placeholder="Regimen de salud" [(ngModel)]="dataGeneral.health" name="health" id="health" fxFlex>
+                  <md-option *ngFor="let health of healths" [value]="health.value">
+                    {{health.viewValue}}
+                  </md-option>
+                </md-select>
+              </div>
+
+              <div fxLayout="column" fxLayout.gt-sm="row">
+                <md-input-container fxFlex>
+                  <input mdInput name="contact" id="contact" [(ngModel)]="dataGeneral.contact" placeholder="Persona responsable o de contacto">
+                </md-input-container>
+                <md-input-container fxFlex>
+                  <input mdInput name="numbercontact" id="numbercontact" [(ngModel)]="dataGeneral.numbercontact" placeholder="Teléfono de la persona responsable"
+                    ngModel>
+                </md-input-container>
+                <md-input-container fxFlex>
+                  <input mdInput name="livenumber" id="livenumber" [(ngModel)]="dataGeneral.livenumber" placeholder="Número de personas con quien vive?"
+                    ngModel>
+                </md-input-container>
+              </div>
+
+              <div fxLayout="column" fxLayout.gt-sm="row">
+                <md-select placeholder="Nivel educativo de la madre" [(ngModel)]="dataGeneral.mothereducation" name="mothereducation" id="mothereducation"
+                  fxFlex>
+                  <md-option *ngFor="let education of educations" [value]="education.value">
+                    {{education.viewValue}}
+                  </md-option>
+                </md-select>
+                <md-input-container fxFlex>
+                  <input mdInput name="motheroccupation" id="motheroccupation" [(ngModel)]="dataGeneral.motheroccupation" placeholder="Ocupación madre">
+                </md-input-container>
+                <md-select placeholder="Nivel educativo del padre" [(ngModel)]="dataGeneral.fathereducation" name="fathereducation" id="fathereducation"
+                  fxFlex>
+                  <md-option *ngFor="let education of educations" [value]="education.value">
+                    {{education.viewValue}}
+                  </md-option>
+                </md-select>
+                <md-input-container fxFlex>
+                  <input mdInput name="fatheroccupation" id="fatheroccupation" [(ngModel)]="dataGeneral.fatheroccupation" placeholder="Ocupación padre"
+                    ngModel>
+                </md-input-container>
+              </div>
+              <div fxLayout="row" fxLayoutAlign="end center">
+                <!--[disabled]="!form.valid" -->
+                <button id="savePersonalInformation" color="primary" md-raised-button style="margin-left: 8px;" (click)="nextStep()" type="button">Siguiente</button>
+              </div>
+            </div>
+          </form>
+        </md-tab>
+        <!--  -->
+        <md-tab label="Antecedentes" [disabled]="!form.valid">
+          <form #form2="ngForm" id="HealthHistory" name="HealthHistory">
+            <div fxLayout="column" style="padding: 16px;" class="healthHistory">
+              <div fxLayout="column" fxLayout.gt-sm="row" class="contentHealthHistory">
+                <div class="cardsHealthHistory">
+                  <md-card>
+                    <md-card-header>
+                      <md-card-title>Antecedentes personales</md-card-title>
+                    </md-card-header>
+                    <md-divider></md-divider>
+                    <md-card-content>
+                      <div fxLayout="column" class="contenthealthHistory">
+                        <md-slide-toggle color="primary" class="slide-toggle" id="personalCancer" name="personalCancer" [(ngModel)]="healthHistory.personalCancer"
+                          fxFlex>
+                          Cáncer
+                        </md-slide-toggle>
+                        <md-slide-toggle color="primary" class="slide-toggle" id="personalDiabetes" name="personalDiabetes" [(ngModel)]="healthHistory.personalDiabetes"
+                          fxFlex>
+                          Diabetes
+                        </md-slide-toggle>
+                        <md-slide-toggle color="primary" class="slide-toggle" id="personalHeartDiseases" name="personalHeartDiseases" [(ngModel)]="healthHistory.personalHeartDiseases"
+                          fxFlex>
+                          Enfermedades cardiacas
+                        </md-slide-toggle>
+                        <md-slide-toggle color="primary" class="slide-toggle" id="personalObesity" name="personalObesity" [(ngModel)]="healthHistory.personalObesity"
+                          fxFlex>
+                          Obesidad
+                        </md-slide-toggle>
+                        <md-slide-toggle color="primary" class="slide-toggle" id="personalHypertension" name="personalHypertension" [(ngModel)]="healthHistory.personalHypertension"
+                          fxFlex>
+                          Hipertensión arterial
+                        </md-slide-toggle>
+                        <md-slide-toggle color="primary" class="slide-toggle" id="personalDyslipidemias" name="personalDyslipidemias" [(ngModel)]="healthHistory.personalDyslipidemias"
+                          fxFlex>
+                          Dislipidemias (colesterol, triglicéridos, HDL)
+                        </md-slide-toggle>
+                        <md-slide-toggle color="primary" class="slide-toggle" id="personalPsychiatric" name="personalPsychiatric" [(ngModel)]="healthHistory.personalPsychiatric"
+                          fxFlex>
+                          Enfermedades psiquiátricas
+                        </md-slide-toggle>
+                        <md-slide-toggle color="primary" class="slide-toggle" id="personalGastrointestinal" name="personalGastrointestinal" [(ngModel)]="healthHistory.personalGastrointestinal"
+                          fxFlex>
+                          Enfermedades gastrointestinales
+                        </md-slide-toggle>
+                        <md-slide-toggle color="primary" class="slide-toggle" id="personalOthercheck" name="personalOthercheck" [(ngModel)]="healthHistory.personalOthercheck"
+                          fxFlex>
+                          Otra?
+                        </md-slide-toggle>
+                        <md-input-container fxFlex *ngIf="healthHistory.personalOthercheck">
+                          <input mdInput name="personalOther" id="personalOther" [(ngModel)]="healthHistory.personalOther" placeholder="¿Cual? puedes ingresar varias separadas por (,)">
+                        </md-input-container>
+                      </div>
+                    </md-card-content>
+                  </md-card>
+                </div>
+                <div class="cardsHealthHistory">
+                  <md-card>
+                    <md-card-header>
+                      <md-card-title>Antecedentes familiares</md-card-title>
+                    </md-card-header>
+                    <md-divider></md-divider>
+                    <md-card-content>
+                      <div fxLayout="column" class="contenthealthHistory">
+                        <md-slide-toggle color="primary" class="slide-toggle" id="familyCancer" name="familyCancer" [(ngModel)]="healthHistory.familyCancer"
+                          fxFlex>
+                          Cáncer
+                        </md-slide-toggle>
+                        <md-slide-toggle color="primary" class="slide-toggle" id="familyDiabetes" name="familyDiabetes" [(ngModel)]="healthHistory.familyDiabetes"
+                          fxFlex>
+                          Diabetes
+                        </md-slide-toggle>
+                        <md-slide-toggle color="primary" class="slide-toggle" id="familyHeartDiseases" name="familyHeartDiseases" [(ngModel)]="healthHistory.familyHeartDiseases"
+                          fxFlex>
+                          Enfermedades cardiacas
+                        </md-slide-toggle>
+                        <md-slide-toggle color="primary" class="slide-toggle" id="familyObesity" name="familyObesity" [(ngModel)]="healthHistory.familyObesity"
+                          fxFlex>
+                          Obesidad
+                        </md-slide-toggle>
+                        <md-slide-toggle color="primary" class="slide-toggle" id="familyHypertension" name="familyHypertension" [(ngModel)]="healthHistory.familyHypertension"
+                          fxFlex>
+                          Hipertensión arterial
+                        </md-slide-toggle>
+                        <md-slide-toggle color="primary" class="slide-toggle" id="familyDyslipidemias" name="familyDyslipidemias" [(ngModel)]="healthHistory.familyDyslipidemias"
+                          fxFlex>
+                          Dislipidemias (colesterol, triglicéridos, HDL)
+                        </md-slide-toggle>
+                        <md-slide-toggle color="primary" class="slide-toggle" id="familyPsychiatric" name="familyPsychiatric" [(ngModel)]="healthHistory.familyPsychiatric"
+                          fxFlex>
+                          Enfermedades psiquiátricas
+                        </md-slide-toggle>
+                        <md-slide-toggle color="primary" class="slide-toggle" id="familyGastrointestinal" name="familyGastrointestinal" [(ngModel)]="healthHistory.familyGastrointestinal"
+                          fxFlex>
+                          Enfermedades gastrointestinales
+                        </md-slide-toggle>
+                        <md-slide-toggle color="primary" class="slide-toggle" id="familyOthercheck" name="familyOthercheck" [(ngModel)]="healthHistory.familyOthercheck"
+                          fxFlex>
+                          Otra?
+                        </md-slide-toggle>
+                        <md-input-container fxFlex *ngIf="healthHistory.familyOthercheck">
+                          <input mdInput name="familyOther" id="familyOther" [(ngModel)]="healthHistory.familyOther" placeholder="¿Cual? puedes ingresar varias separadas por (,)">
+                        </md-input-container>
+                      </div>
+                    </md-card-content>
+                  </md-card>
+                </div>
+              </div>
+              <div fxLayout="row" fxLayoutAlign="end center">
+                <button md-button type="button" (click)="previousStep()" id="previousPagePersonalData">Anterior</button>
+                <!-- -->
+                <button [disabled]="!form2.valid" color="primary" md-raised-button style="margin-left: 8px;" (click)="nextStep()" type="button"
+                  id="savePersonalFamilyHistory">Siguiente</button>
+              </div>
+            </div>
+          </form>
+        </md-tab>
+        <!--  -->
+        <md-tab label="Actualidad" [disabled]="!form.valid">
+          <form #form3="ngForm" id="AtPesentYou" name="AtPesentYou" class="AtPesentYou">
+            <md-card class="cardsAtPesentYou">
+              <md-card-header>
+                <md-card-title>
+                  En la actualidad usted consume...
+                </md-card-title>
+              </md-card-header>
+              <md-card-content>
+                <div fxLayout="column" style="padding: 16px;">
+                  <div fxLayout="column" fxLayout.gt-sm="row">
+                    <div class="cardsAtPesentYou" fxFlex>
+                      <md-card>
+                        <md-card-header>
+                          <md-card-title>
+                            <md-slide-toggle [(ngModel)]="atPesentYou.formulatedDrugs" color="primary" class="slide-toggle" id="formulatedDrugs" name="formulatedDrugs"
+                              fxFlex>
+                              ¿Medicamentos formulados?
+                            </md-slide-toggle>
+                          </md-card-title>
+                        </md-card-header>
+                        <md-divider></md-divider>
+                        <md-card-content>
+                          <div fxLayout="column" style="padding: 16px;">
+
+                            <md-input-container fxFlex *ngIf="atPesentYou.formulatedDrugs">
+                              <input mdInput name="formulatedDrugsName" id="formulatedDrugsName" [(ngModel)]="atPesentYou.formulatedDrugsName" placeholder="Nombre">
+                            </md-input-container>
+                            <md-input-container fxFlex *ngIf="atPesentYou.formulatedDrugs">
+                              <input mdInput name="formulatedDrugsIngestedDose" id="formulatedDrugsIngestedDose" [(ngModel)]="atPesentYou.formulatedDrugsIngestedDose"
+                                placeholder="Dosis ingerida">
+                            </md-input-container>
+                            <md-input-container fxFlex *ngIf="atPesentYou.formulatedDrugs">
+                              <input mdInput name="formulatedDrugsFrequency" id="formulatedDrugsFrequency" [(ngModel)]="atPesentYou.formulatedDrugsFrequency"
+                                placeholder="Frecuencia">
+                            </md-input-container>
+                            <md-input-container fxFlex *ngIf="atPesentYou.formulatedDrugs">
+                              <input mdInput name="formulatedDrugsWhy" id="formulatedDrugsWhy" [(ngModel)]="atPesentYou.formulatedDrugsWhy" placeholder="¿Por qué los consume?">
+                            </md-input-container>
+
+                          </div>
+                        </md-card-content>
+                      </md-card>
+                    </div>
+                    <div class="cardsAtPesentYou" fxFlex>
+                      <md-card>
+                        <md-card-header>
+                          <md-card-title>
+                            <md-slide-toggle [(ngModel)]="atPesentYou.supplements" color="primary" class="slide-toggle" id="supplements" name="supplements"
+                              fxFlex>
+                              ¿Suplementos y/o complementos?
+                            </md-slide-toggle>
+                          </md-card-title>
+                        </md-card-header>
+                        <md-divider></md-divider>
+                        <md-card-content>
+                          <div fxLayout="column" style="padding: 16px;">
+                            <md-input-container fxFlex *ngIf="atPesentYou.supplements">
+                              <input mdInput name="supplementsName" id="supplementsName" [(ngModel)]="atPesentYou.supplementsName" placeholder="Nombre">
+                            </md-input-container>
+                            <md-input-container fxFlex *ngIf="atPesentYou.supplements">
+                              <input mdInput name="supplementsIngestedDose" id="supplementsIngestedDose" [(ngModel)]="atPesentYou.supplementsIngestedDose"
+                                placeholder="Dosis ingerida">
+                            </md-input-container>
+                            <md-input-container fxFlex *ngIf="atPesentYou.supplements">
+                              <input mdInput name="supplementsFrequency" id="supplementsFrequency" [(ngModel)]="atPesentYou.supplementsFrequency" placeholder="Frecuencia">
+                            </md-input-container>
+                            <md-input-container fxFlex *ngIf="atPesentYou.supplements">
+                              <input mdInput name="supplementsWhy" id="supplementsWhy" [(ngModel)]="atPesentYou.supplementsWhy" placeholder="¿Por qué los consume?">
+                            </md-input-container>
+                          </div>
+                        </md-card-content>
+                      </md-card>
+                    </div>
+                  </div>
+                  <div fxLayout="column" fxLayout.gt-sm="row">
+                    <div class="cardsAtPesentYou" fxFlex>
+                      <md-card>
+                        <md-card-header>
+                          <md-card-title>
+                            <md-slide-toggle [(ngModel)]="atPesentYou.anotherSupplement" color="primary" class="slide-toggle" id="anotherSupplement"
+                              name="anotherSupplement" fxFlex>
+                              ¿Otro suplemento y/o complemento?
+                            </md-slide-toggle>
+                          </md-card-title>
+                        </md-card-header>
+                        <md-divider></md-divider>
+                        <md-card-content>
+                          <div fxLayout="column" style="padding: 16px;">
+                            <md-input-container fxFlex *ngIf="atPesentYou.anotherSupplement">
+                              <input mdInput name="anotherSupplementName" id="anotherSupplementName" [(ngModel)]="atPesentYou.anotherSupplementName" placeholder="Nombre">
+                            </md-input-container>
+                            <md-input-container fxFlex *ngIf="atPesentYou.anotherSupplement">
+                              <input mdInput name="anotherSupplementIngestedDose" id="anotherSupplementIngestedDose" [(ngModel)]="atPesentYou.anotherSupplementIngestedDose"
+                                placeholder="Dosis ingerida">
+                            </md-input-container>
+                            <md-input-container fxFlex *ngIf="atPesentYou.anotherSupplement">
+                              <input mdInput name="anotherSupplementFrequency" id="anotherSupplementFrequency" [(ngModel)]="atPesentYou.anotherSupplementFrequency"
+                                placeholder="Frecuencia">
+                            </md-input-container>
+                            <md-input-container fxFlex *ngIf="atPesentYou.anotherSupplement">
+                              <input mdInput name="anotherSupplementWhy" id="anotherSupplementWhy" [(ngModel)]="atPesentYou.anotherSupplementWhy" placeholder="¿Por qué los consume?">
+                            </md-input-container>
+                          </div>
+                        </md-card-content>
+                      </md-card>
+                    </div>
+                    <div class="cardsAtPesentYou" fxFlex>
+                    </div>
+                  </div>
+
+                  <div fxLayout="row" fxLayoutAlign="end center">
+                    <button md-button type="button" (click)="previousStep()" id="previousPagePersonalData">Anterior</button>
+                    <!-- -->
+                    <button [disabled]="!form3.valid" color="primary" md-raised-button style="margin-left: 8px;" (click)="nextStep()" type="button"
+                      id="savePersonalFamilyHistory">Siguiente</button>
+                  </div>
+                </div>
+              </md-card-content>
+            </md-card>
+          </form>
+        </md-tab>
+
+
+        <!--  -->
+        <md-tab label="Estilo de vida" [disabled]="!form.valid">
+          <form #form4="ngForm" id="Lifestyle" name="Lifestyle">
+            <div fxLayout="column" class="Lifestyle">
+              <div fxLayout="column" fxLayout.gt-sm="row">
+                <div class="cardsLifestyle" fxFlex>
+                  <md-card>
+                    <md-card-header>
+                      <md-card-title>
+                        Actividad física
+                      </md-card-title>
+                    </md-card-header>
+                    <md-divider></md-divider>
+                    <md-card-content>
+                      <div fxLayout="column">
+                        <md-slide-toggle [(ngModel)]="lifestyle.physicalActivity" color="primary" class="slide-toggle" id="physicalActivity" name="physicalActivity"
+                          fxFlex style=" margin-top: 16px; margin-bottom: 16px;">
+                          ¿Realiza actividad física?
+                        </md-slide-toggle>
+                        <md-select *ngIf="lifestyle.physicalActivity" placeholder="Cuantos días a la semana" name="daysPhysicalActivity" id="daysPhysicalActivity"
+                          [(ngModel)]="lifestyle.daysPhysicalActivity" fxFlex>
+                          <md-option *ngFor="let day of days" [value]="day.value">
+                            {{day.viewValue}}
+                          </md-option>
+                        </md-select>
+                        <md-input-container fxFlex *ngIf="lifestyle.physicalActivity">
+                          <input mdInput name="minPhysicalActivity" id="minPhysicalActivity" [(ngModel)]="lifestyle.minPhysicalActivity" placeholder="¿Promedio de minutos en cada sesión?">
+                        </md-input-container>
+                        <div mdTooltip="¿En un día común aproximadamente cuanto tiempo pasa usted sentado o reclinado?" [mdTooltipPosition]="position">
+                          <md-input-container fxFlex>
+                            <input mdInput name="seated" id="seated" [(ngModel)]="lifestyle.seated" placeholder="¿En un día común aproximadamente cuanto tiempo pasa usted sentado o reclinado?">
+                          </md-input-container>
+                        </div>
+                      </div>
+                    </md-card-content>
+                  </md-card>
+                </div>
+              </div>
+            </div>
+            <div fxLayout="column" class="Lifestyle">
+              <div fxLayout="column" fxLayout.gt-sm="row">
+                <div class="cardsLifestyle cardscolum" fxFlex>
+                  <md-card>
+                    <md-card-header>
+                      <md-card-title>
+                        <div mdTooltip="recuerde no tener en cuenta el uso en el tiempo que destina para realizar actividades en la Universidad"
+                          [mdTooltipPosition]="position">
+                          Ocio y tiempo libre
+                        </div>
+                      </md-card-title>
+                    </md-card-header>
+                    <md-divider></md-divider>
+                    <md-card-content>
+                      <div fxLayout="column">
+                        <div fxLayout="column" fxLayout.gt-sm="row">
+                          <md-select class="selectleisure" placeholder="Utilización de la internet" [(ngModel)]="lifestyle.internetUse" name="internetUse" id="internetUse"
+                            fxFlex>
+                            <md-option *ngFor="let leisure of leisure" [value]="leisure.value">
+                              {{leisure.viewValue}}
+                            </md-option>
+                          </md-select>
+                          <div mdTooltip="Número de horas semanales" [mdTooltipPosition]="position">
+                            <md-input-container fxFlex>
+                              <input mdInput [(ngModel)]="lifestyle.internetUseHours" name="internetUseHours" id="internetUseHours" placeholder="Número de horas semanales">
+                            </md-input-container>
+                          </div>
+                        </div>
+                        <div fxLayout="column" fxLayout.gt-sm="row">
+                          <md-select class="selectleisure" placeholder="Jugar con videojuegos" [(ngModel)]="lifestyle.videoGame" name="videoGame" id="videoGame"
+                            fxFlex>
+                            <md-option *ngFor="let leisure of leisure" [value]="leisure.value">
+                              {{leisure.viewValue}}
+                            </md-option>
+                          </md-select>
+                          <div mdTooltip="Número de horas semanales" [mdTooltipPosition]="position">
+                            <md-input-container fxFlex>
+                              <input mdInput [(ngModel)]="lifestyle.videoGameHours" name="videoGameHours" id="videoGameHours" placeholder="Número de horas semanales">
+                            </md-input-container>
+                          </div>
+                        </div>
+                        <div fxLayout="column" fxLayout.gt-sm="row">
+                          <md-select class="selectleisure" placeholder="Utilizar el celular" [(ngModel)]="lifestyle.useCellphone" name="useCellphone" id="useCellphone"
+                            fxFlex>
+                            <md-option *ngFor="let leisure of leisure" [value]="leisure.value">
+                              {{leisure.viewValue}}
+                            </md-option>
+                          </md-select>
+                          <div mdTooltip="Número de horas semanales" [mdTooltipPosition]="position">
+                            <md-input-container fxFlex>
+                              <input mdInput [(ngModel)]="lifestyle.useCellphoneHours" name="useCellphoneHours" id="useCellphoneHours" placeholder="Número de horas semanales">
+                            </md-input-container>
+                          </div>
+                        </div>
+                        <div fxLayout="column" fxLayout.gt-sm="row">
+                          <md-select class="selectleisure" placeholder="Ver televisión" [(ngModel)]="lifestyle.useTv" name="useTv" id="useTv" fxFlex>
+                            <md-option *ngFor="let leisure of leisure" [value]="leisure.value">
+                              {{leisure.viewValue}}
+                            </md-option>
+                          </md-select>
+                          <div mdTooltip="Número de horas semanales" [mdTooltipPosition]="position">
+                            <md-input-container fxFlex>
+                              <input mdInput [(ngModel)]="lifestyle.useTvHours" name="useTvHours" id="useTvHours" placeholder="Número de horas semanales">
+                            </md-input-container>
+                          </div>
+                        </div>
+                        <div fxLayout="column" fxLayout.gt-sm="row">
+                          <md-select class="selectleisure" placeholder="Leer" [(ngModel)]="lifestyle.read" name="read" id="read" fxFlex>
+                            <md-option *ngFor="let leisure of leisure" [value]="leisure.value">
+                              {{leisure.viewValue}}
+                            </md-option>
+                          </md-select>
+                          <div mdTooltip="Número de horas semanales" [mdTooltipPosition]="position">
+                            <md-input-container fxFlex>
+                              <input mdInput [(ngModel)]="lifestyle.readHours" name="readHours" id="readHours" placeholder="Número de horas semanales">
+                            </md-input-container>
+                          </div>
+                        </div>
+                        <div fxLayout="column" fxLayout.gt-sm="row">
+                          <md-select class="selectleisure" placeholder="Compartir con la familia" [(ngModel)]="lifestyle.timeFamily" name="timeFamily" id="timeFamily"
+                            fxFlex>
+                            <md-option *ngFor="let leisure of leisure" [value]="leisure.value">
+                              {{leisure.viewValue}}
+                            </md-option>
+                          </md-select>
+                          <div mdTooltip="Número de horas semanales" [mdTooltipPosition]="position">
+                            <md-input-container fxFlex>
+                              <input mdInput [(ngModel)]="lifestyle.timeFamilyHours" name="timeFamilyHours" id="timeFamilyHours" placeholder="Número de horas semanales">
+                            </md-input-container>
+                          </div>
+                        </div>
+                        <div fxLayout="column" fxLayout.gt-sm="row">
+                          <md-select class="selectleisure" placeholder="Compartir con los amigos" [(ngModel)]="lifestyle.timeFriends" name="timeFriends" id="timeFriends"
+                            fxFlex>
+                            <md-option *ngFor="let leisure of leisure" [value]="leisure.value">
+                              {{leisure.viewValue}}
+                            </md-option>
+                          </md-select>
+                          <div mdTooltip="Número de horas semanales" [mdTooltipPosition]="position">
+                            <md-input-container fxFlex>
+                              <input mdInput [(ngModel)]="lifestyle.timeFriendsHours" name="timeFriendsHours" id="timeFriendsHours" placeholder="Número de horas semanales">
+                            </md-input-container>
+                          </div>
+                        </div>
+                        <div fxLayout="column" fxLayout.gt-sm="row">
+                          <div mdTooltip="Asistir a actos académicos (conferencias, congresos, etc.)" [mdTooltipPosition]="position">
+                            <md-select class="selectleisure" placeholder="Asistir a actos académicos" [(ngModel)]="lifestyle.academicActs" name="academicActs"
+                              id="academicActs" fxFlex>
+                              <md-option *ngFor="let leisure of leisure" [value]="leisure.value">
+                                {{leisure.viewValue}}
+                              </md-option>
+                            </md-select>
+                          </div>
+                          <div mdTooltip="Número de horas semanales" [mdTooltipPosition]="position">
+                            <md-input-container fxFlex>
+                              <input mdInput [(ngModel)]="lifestyle.academicActsHours" name="academicActsHours" id="academicActsHours" placeholder="Número de horas semanales">
+                            </md-input-container>
+                          </div>
+                        </div>
+                        <div fxLayout="column" fxLayout.gt-sm="row">
+                          <md-input-container fxFlex>
+                            <input mdInput [(ngModel)]="lifestyle.otherLeisure" name="otherLeisure" id="otherLeisure" placeholder="Otro ¿Cuál? ">
+                          </md-input-container>
+                          <div mdTooltip="Número de horas semanales" [mdTooltipPosition]="position">
+                            <md-input-container fxFlex>
+                              <input mdInput [(ngModel)]="lifestyle.otherLeisureHours" name="otherLeisureHours" id="otherLeisureHours" placeholder="Número de horas semanales">
+                            </md-input-container>
+                          </div>
+                        </div>
+                      </div>
+                    </md-card-content>
+                  </md-card>
+                </div>
+                <div class="cardsLifestyle cardscolum" fxFlex>
+                  <md-card>
+                    <md-card-header>
+                      <md-card-title>
+                        Prácticas de sueño
+                      </md-card-title>
+                    </md-card-header>
+                    <md-divider></md-divider>
+                    <md-card-content>
+                      <div fxLayout="column">
+                        <md-select class="selectsleepPractice" placeholder="¿Duerme al menos 7 horas diarias?" [(ngModel)]="lifestyle.sevenHoursDay" name="sevenHoursDay"
+                          id="sevenHoursDay" fxFlex>
+                          <md-option *ngFor="let sleepPractice of sleepPractices" [value]="sleepPractice.value">
+                            {{sleepPractice.viewValue}}
+                          </md-option>
+                        </md-select>
+                        <md-select class="selectsleepPractice" placeholder="¿Duerme bien y se levanta descansado?" [(ngModel)]="lifestyle.getUpRested" name="getUpRested"
+                          id="getUpRested" fxFlex>
+                          <md-option *ngFor="let sleepPractice of sleepPractices" [value]="sleepPractice.value">
+                            {{sleepPractice.viewValue}}
+                          </md-option>
+                        </md-select>
+                        <md-select class="selectsleepPractice" placeholder="¿Le cuesta trabajo quedarse dormido?" [(ngModel)]="lifestyle.troubleFallingSleep"
+                          name="troubleFallingSleep" id="troubleFallingSleep" fxFlex>
+                          <md-option *ngFor="let sleepPractice of sleepPractices" [value]="sleepPractice.value">
+                            {{sleepPractice.viewValue}}
+                          </md-option>
+                        </md-select>
+                        <md-select class="selectsleepPractice" placeholder="¿Se despierta en varias ocasiones durante la noche?" [(ngModel)]="lifestyle.wakeUpAtNight"
+                          name="wakeUpAtNight" id="wakeUpAtNight" fxFlex>
+                          <md-option *ngFor="let sleepPractice of sleepPractices" [value]="sleepPractice.value">
+                            {{sleepPractice.viewValue}}
+                          </md-option>
+                        </md-select>
+                        <md-select class="selectsleepPractice" placeholder="¿Se levanta en la mañana con la sensación de una noche mal dormida?"
+                          [(ngModel)]="lifestyle.feelingBadNight" name="feelingBadNight" id="feelingBadNight" fxFlex>
+                          <md-option *ngFor="let sleepPractice of sleepPractices" [value]="sleepPractice.value">
+                            {{sleepPractice.viewValue}}
+                          </md-option>
+                        </md-select>
+                        <md-select class="selectsleepPractice" placeholder="¿Hace siesta?" [(ngModel)]="lifestyle.doYouNap" name="doYouNap" id="doYouNap" fxFlex>
+                          <md-option *ngFor="let sleepPractice of sleepPractices" [value]="sleepPractice.value">
+                            {{sleepPractice.viewValue}}
+                          </md-option>
+                        </md-select>
+                        <md-select class="selectsleepPractice" placeholder="¿Se mantiene con sueño durante el día?" [(ngModel)]="lifestyle.sleepDuringDay"
+                          name="sleepDuringDay" id="sleepDuringDay" fxFlex>
+                          <md-option *ngFor="let sleepPractice of sleepPractices" [value]="sleepPractice.value">
+                            {{sleepPractice.viewValue}}
+                          </md-option>
+                        </md-select>
+                        <md-select class="selectsleepPractice" placeholder="¿Utiliza pastillas para dormir?" [(ngModel)]="lifestyle.sleepingPills" name="sleepingPills"
+                          id="sleepingPills" fxFlex>
+                          <md-option *ngFor="let sleepPractice of sleepPractices" [value]="sleepPractice.value">
+                            {{sleepPractice.viewValue}}
+                          </md-option>
+                        </md-select>
+                      </div>
+                    </md-card-content>
+                  </md-card>
+                </div>
+              </div>
+
+
+              <div fxLayout="row" fxLayoutAlign="end center" style="padding: 16px;">
+                <button md-button type="button" (click)="previousStep()" id="previousPagePersonalData">Anterior</button>
+                <!-- -->
+                <button [disabled]="!form4.valid" color="primary" md-raised-button style="margin-left: 8px;" (click)="saveData()" type="button"
+                  id="savePersonalFamilyHistory">Guardar</button>
+              </div>
+            </div>
+
+          </form>
+        </md-tab>
+
+
+
+      </md-tab-group>
+    </md-card-content>
+  </md-card>
+</div>

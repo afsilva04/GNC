@@ -5,37 +5,24 @@ import { fadeInAnimation } from "../../route.animation";
 import { MdSnackBar } from "@angular/material";
 
 
+
 @Component({
   selector: 'ms-negotiation',
   templateUrl: './negotiation.component.html',
-  styleUrls: ['./negotiation.component.scss']
+  styleUrls: ['./negotiation.component.scss'],
+  host: {
+    '[@fadeInAnimation]': 'true'
+  },
+  animations: [fadeInAnimation]
 })
 export class NegotiationComponent implements OnInit {
 
-  constructor(private snackBar: MdSnackBar) { }
 
-  public form = {
-        name: '',
-        hobbies: []
-    };
-
-  selectedIndex: number = 0;
-  position = 'before';
+  constructor() {
+  }
   ngOnInit() {
+
   }
 
-  nextStep() {
-    this.selectedIndex += 1;
-  }
-
-  previousStep() {
-    this.selectedIndex -= 1;
-  }
-
-  saveData() {
-    this.snackBar.open('Datos registrados con exito.', 'Cerrar', {
-      duration: 3000
-    });
-  }
 
 }

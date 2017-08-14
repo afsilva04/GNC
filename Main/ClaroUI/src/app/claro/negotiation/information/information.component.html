@@ -1,0 +1,143 @@
+<div fxLayout="row" fxLayoutAlign="center center" class="contentnegotiation">
+  <md-card fxFlex="90%" style="padding: 0;">
+    <md-toolbar color="primary" class="toolbar">Ingreso de información</md-toolbar>
+    <md-card-content>
+      <md-tab-group [(selectedIndex)]="selectedIndexTabOne" #tabGroup>
+        <md-tab label="Info. Cliente">
+          <form #form="ngForm" id="customer" name="customer">
+            <div fxLayout="column" style="padding: 16px;">
+              <div fxLayout="column" fxLayout.gt-sm="row">
+                <div fxFlex>
+                  <md-input-container>
+                    <input mdInput placeholder="Id Cliente/grupo" id="idCustomer" name="idCustomer" [(ngModel)]="customer.idCustomer" [mdAutocomplete]="reactiveAuto"
+                      [formControl]="customerCtrl">
+                  </md-input-container>
+                  <md-autocomplete #reactiveAuto="mdAutocomplete" [displayWith]="displayFn">
+                    <md-option *ngFor="let state of reactiveCustomers | async" [value]="state">
+                      <span>{{ state.name }}</span>
+                      <span class="demo-secondary-text"> ({{state.code}}) </span>
+                    </md-option>
+                  </md-autocomplete>
+
+                </div>
+                <md-input-container fxFlex>
+                  <input mdInput name="name" id="name" [(ngModel)]="customer.name" disabled ngModel placeholder="Nombre">
+                </md-input-container>
+              </div>
+
+              <div fxLayout="column" fxLayout.gt-sm="row">
+                <md-input-container fxFlex>
+                  <input mdInput name="description" id="description" [(ngModel)]="customer.identification" required ngModel placeholder="Descripción">
+                </md-input-container>
+                <md-input-container fxFlex>
+                  <input mdInput name="commercialAssignment" id="commercialAssignment" [(ngModel)]="customer.commercialAssignment" disabled
+                    ngModel placeholder="Asignación Comercial">
+                </md-input-container>
+              </div>
+
+              <div fxLayout="column" fxLayout.gt-sm="row">
+                <md-input-container fxFlex>
+                  <input mdInput name="region" id="region" [(ngModel)]="customer.region" disabled ngModel placeholder="Región">
+                </md-input-container>
+                <md-input-container fxFlex>
+                  <input mdInput name="subArea" id="subArea" [(ngModel)]="customer.subArea" disabled ngModel placeholder="Subzona">
+                </md-input-container>
+              </div>
+
+              <div fxLayout="column" fxLayout.gt-sm="row">
+                <md-input-container fxFlex>
+                  <input mdInput name="currentLines" id="currentLines" [(ngModel)]="customer.currentLines" disabled ngModel placeholder="Líneas Actuales">
+                </md-input-container>
+                <md-input-container fxFlex>
+                  <input mdInput name="valueArpu" id="valueArpu" [(ngModel)]="customer.valueArpu" disabled ngModel placeholder="Valor Arpu">
+                </md-input-container>
+              </div>
+
+              <div fxLayout="column" fxLayout.gt-sm="row">
+                <md-input-container fxFlex>
+                  <input mdInput name="averageArpuLine" id="averageArpuLine" [(ngModel)]="customer.averageArpuLine" disabled ngModel placeholder="Promedio Arpu por Línea">
+                </md-input-container>
+                <div fxFlex>
+                </div>
+              </div>
+
+              <div fxLayout="row" fxLayoutAlign="end center">
+                <!--[disabled]="!form.valid" -->
+                <button id="savePersonalInformation" color="primary" md-raised-button style="margin-left: 8px;" (click)="nextStep()" type="button">Siguiente</button>
+              </div>
+            </div>
+          </form>
+        </md-tab>
+        <!--  -->
+        <md-tab label="Fechas" [disabled]="!form.valid">
+          <form #form2="ngForm" id="HealthHistory" name="HealthHistory">
+            <div fxLayout="column" style="padding: 16px;" class="healthHistory">
+              <div fxLayout="row" fxLayoutAlign="end center">
+                <button md-button type="button" (click)="previousStep()" id="previousPagePersonalData">Anterior</button>
+                <!-- -->
+                <button [disabled]="!form2.valid" color="primary" md-raised-button style="margin-left: 8px;" (click)="nextStep()" type="button"
+                  id="savePersonalFamilyHistory">Siguiente</button>
+              </div>
+            </div>
+          </form>
+        </md-tab>
+        <!--  -->
+        <md-tab label="Ciclo de Ventas" [disabled]="!form.valid">
+          <form #form3="ngForm" id="AtPesentYou" name="AtPesentYou" class="AtPesentYou">
+            <div fxLayout="column" style="padding: 16px;" class="healthHistory">
+              <div fxLayout="row" fxLayoutAlign="end center">
+                <button md-button type="button" (click)="previousStep()" id="previousPagePersonalData">Anterior</button>
+                <!-- -->
+                <button [disabled]="!form2.valid" color="primary" md-raised-button style="margin-left: 8px;" (click)="nextStep()" type="button"
+                  id="savePersonalFamilyHistory">Siguiente</button>
+              </div>
+            </div>
+          </form>
+        </md-tab>
+
+        <md-tab label="Negociación Anterior" [disabled]="!form.valid">
+          <form #form4="ngForm" id="AtPesentYou" name="AtPesentYou" class="AtPesentYou">
+            <div fxLayout="column" style="padding: 16px;" class="healthHistory">
+              <div fxLayout="row" fxLayoutAlign="end center">
+                <button md-button type="button" (click)="previousStep()" id="previousPagePersonalData">Anterior</button>
+                <!-- -->
+                <button [disabled]="!form2.valid" color="primary" md-raised-button style="margin-left: 8px;" (click)="nextStep()" type="button"
+                  id="savePersonalFamilyHistory">Siguiente</button>
+              </div>
+            </div>
+          </form>
+        </md-tab>
+
+        <md-tab label="Indicadores" [disabled]="!form.valid">
+          <form #form5="ngForm" id="AtPesentYou" name="AtPesentYou" class="AtPesentYou">
+            <div fxLayout="column" style="padding: 16px;" class="healthHistory">
+              <div fxLayout="row" fxLayoutAlign="end center">
+                <button md-button type="button" (click)="previousStep()" id="previousPagePersonalData">Anterior</button>
+                <!-- -->
+                <button [disabled]="!form2.valid" color="primary" md-raised-button style="margin-left: 8px;" (click)="nextStep()" type="button"
+                  id="savePersonalFamilyHistory">Siguiente</button>
+              </div>
+            </div>
+          </form>
+        </md-tab>
+        <!--  -->
+        <md-tab label="Otros" [disabled]="!form.valid">
+          <form #form4="ngForm" id="Lifestyle" name="Lifestyle">
+            <div fxLayout="column" class="Lifestyle">
+              <div fxLayout="row" fxLayoutAlign="end center" style="padding: 16px;">
+                <button md-button type="button" (click)="previousStep()" id="previousPagePersonalData">Anterior</button>
+                <!-- -->
+                <button [disabled]="!form4.valid" color="primary" md-raised-button style="margin-left: 8px;" (click)="saveData()" type="button"
+                  id="savePersonalFamilyHistory">Guardar</button>
+              </div>
+            </div>
+
+          </form>
+        </md-tab>
+
+
+
+      </md-tab-group>
+    </md-card-content>
+  </md-card>
+</div>

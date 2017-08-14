@@ -1,13 +1,13 @@
 export class InformationCustomer {
-    idCustomer: string;
-    name: string;
-    description: string;
-    commercialAssignment: string;
-    region: string;
-    subArea: string;
-    currentLines: string;
-    valueArpu: string;
-    averageArpuLine: string;
+    idCustomer: string;//ID CLIENTE/GRUPO EMPRESARIAL
+    name: string; //NOMBRE CLIENTE/GRUPO EMPRESARIAL
+    description: string; //DESCRIPCIÓN
+    commercialAssignment: string; //ASIGNACIÓN COMERCIAL
+    region: string; //REGION
+    subArea: string; //SUBZONA
+    currentLines: string; //LINEAS ACTUALES
+    valueArpu: string; //VALOR ARPU
+    averageArpuLine: string;//PROMEDIO ARPU POR LINEA
 
     constructor(model: any = null) {
         if (model) {

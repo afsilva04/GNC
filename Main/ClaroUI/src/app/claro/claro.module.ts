@@ -16,16 +16,13 @@ import { PerfectScrollbarModule } from 'ngx-perfect-scrollbar';
 import { environment } from "../../environments/environment";
 
 // Componets
-import { UserdataComponent } from './userdata/userdata.component';
 import { LoginComponent } from './login/login.component';
 import { RegisterComponent, DialogTerms } from './register/register.component';
 import { ForgotPasswordComponent } from './forgot-password/forgot-password.component';
 import { NegotiationComponent } from './negotiation/negotiation.component';
-
-
 import { ExpansionPanelsModule } from 'ng2-expansion-panels';
-
-
+import { InformationComponent } from './negotiation/information/information.component';
+import { ProductsComponent } from './negotiation/products/products.component';
 
 // Providers
 import { UserService } from "./services/user/user.service";
@@ -55,12 +52,13 @@ import { RouteGuard } from './services/routing/route-guard.service';
     ExpansionPanelsModule
   ],
   declarations: [
-    UserdataComponent,
     LoginComponent,
     RegisterComponent,
     ForgotPasswordComponent,
     DialogTerms,
-    NegotiationComponent
+    NegotiationComponent,
+    InformationComponent,
+    ProductsComponent
   ],
   entryComponents: [
     DialogTerms

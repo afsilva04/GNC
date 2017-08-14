@@ -34,7 +34,7 @@ export class LoginComponent implements OnInit {
   ngOnInit() {
     var remember = (localStorage.getItem("remember") === 'true');
     if (remember) {
-      this.router.navigate(['/claro/userdata']);
+      this.router.navigate(['/claro/negotiation']);
     }
     console.log(remember);
   }

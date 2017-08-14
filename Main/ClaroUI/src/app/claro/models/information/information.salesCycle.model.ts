@@ -1,5 +1,5 @@
 export class InformationSalesCycle {
-    status: string;
+    status: string; //ESTADO
     
     constructor(model: any = null) {
         if (model) {

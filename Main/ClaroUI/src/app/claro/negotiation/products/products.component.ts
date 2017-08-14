@@ -11,8 +11,7 @@ import { MdSnackBar } from "@angular/material";
 })
 export class ProductsComponent implements OnInit {
 
-  private selectedIndexTabOne: number = 0;
-  private selectedIndexTabTwo: number = 0;
+  private selectedIndexTabTwo = 0;
   position = 'before';
 
   constructor(private snackBar: MdSnackBar) { }
@@ -20,13 +19,11 @@ export class ProductsComponent implements OnInit {
   ngOnInit() {
   }
 
-    nextStep() {
-    this.selectedIndexTabOne += 1;
+  nextStep() {
     this.selectedIndexTabTwo += 1;
   }
 
   previousStep() {
-    this.selectedIndexTabOne -= 1;
     this.selectedIndexTabTwo -= 1;
   }
 

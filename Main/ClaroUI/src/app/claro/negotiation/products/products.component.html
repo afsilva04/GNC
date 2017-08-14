@@ -1,86 +1,92 @@
-     <div fxLayout="row" fxLayoutAlign="center center" class="contentnegotiation">
-        <md-card fxFlex="90%" style="padding: 0;">
-          <md-toolbar color="primary" class="toolbar">Ingreso de productos</md-toolbar>
-          <md-card-content>
-            <md-tab-group [(selectedIndex)]="selectedIndexTabTwo" #tabGroup>
-              <md-tab label="Información del Cliente">
-                <form #form="ngForm">
-                  <div fxLayout="column" style="padding: 16px;">
+<div fxLayout="row" fxLayoutAlign="center center" class="contentnegotiation">
+  <md-card fxFlex="90%" style="padding: 0;">
+    <md-toolbar color="primary" class="toolbar">Ingreso de productos</md-toolbar>
+</div>
 
-                    <div fxLayout="row" fxLayoutAlign="end center">
-                      <!--[disabled]="!form.valid" -->
-                      <button id="savePersonalInformation" color="primary" md-raised-button style="margin-left: 8px;" (click)="nextStep()" type="button">Siguiente</button>
-                    </div>
-                  </div>
-                </form>
-              </md-tab>
-              <!--  -->
-              <md-tab label="Fechas" [disabled]="!form.valid">
-                <form #form2="ngForm" id="HealthHistory" name="HealthHistory">
-                  <div fxLayout="column" style="padding: 16px;" class="healthHistory">
-                    <div fxLayout="row" fxLayoutAlign="end center">
-                      <button md-button type="button" (click)="previousStep()" id="previousPagePersonalData">Anterior</button>
-                      <!-- -->
-                      <button [disabled]="!form2.valid" color="primary" md-raised-button style="margin-left: 8px;" (click)="nextStep()" type="button"
-                        id="savePersonalFamilyHistory">Siguiente</button>
-                    </div>
-                  </div>
-                </form>
-              </md-tab>
-              <!--  -->
-              <md-tab label="Ciclo de Ventas" [disabled]="!form.valid">
-                <form #form3="ngForm" id="AtPesentYou" name="AtPesentYou" class="AtPesentYou">
-                  <div fxLayout="column" style="padding: 16px;" class="healthHistory">
-                    <div fxLayout="row" fxLayoutAlign="end center">
-                      <button md-button type="button" (click)="previousStep()" id="previousPagePersonalData">Anterior</button>
-                      <!-- -->
-                      <button [disabled]="!form2.valid" color="primary" md-raised-button style="margin-left: 8px;" (click)="nextStep()" type="button"
-                        id="savePersonalFamilyHistory">Siguiente</button>
-                    </div>
-                  </div>
-                </form>
-              </md-tab>
+<div fxLayout="row" fxLayoutAlign="center center" class="contentnegotiation">
+  <md-card fxFlex="90%" style="padding: 0;">
+    <md-toolbar color="primary" class="toolbar">Ingreso de productos</md-toolbar>
+    <md-card-content>
+      <md-tab-group [(selectedIndex)]="selectedIndexTabTwo" #tabGroup>
+        <md-tab label="Plan">
+          <form #form="ngForm">
+            <div fxLayout="column" style="padding: 16px;">
 
-              <md-tab label="Negociación Anterior" [disabled]="!form.valid">
-                <form #form4="ngForm" id="AtPesentYou" name="AtPesentYou" class="AtPesentYou">
-                  <div fxLayout="column" style="padding: 16px;" class="healthHistory">
-                    <div fxLayout="row" fxLayoutAlign="end center">
-                      <button md-button type="button" (click)="previousStep()" id="previousPagePersonalData">Anterior</button>
-                      <!-- -->
-                      <button [disabled]="!form2.valid" color="primary" md-raised-button style="margin-left: 8px;" (click)="nextStep()" type="button"
-                        id="savePersonalFamilyHistory">Siguiente</button>
-                    </div>
-                  </div>
-                </form>
-              </md-tab>
+              <div fxLayout="row" fxLayoutAlign="end center">
+                <!--[disabled]="!form.valid" -->
+                <button id="savePlanInformation" color="primary" md-raised-button style="margin-left: 8px;" (click)="nextStep()" type="button">Siguiente</button>
+              </div>
+            </div>
+          </form>
+        </md-tab>
+        <!--  -->
+        <md-tab label="Fechas" [disabled]="!form.valid">
+          <form #form2="ngForm" id="HealthHistory" name="HealthHistory">
+            <div fxLayout="column" style="padding: 16px;" class="healthHistory">
+              <div fxLayout="row" fxLayoutAlign="end center">
+                <button md-button type="button" (click)="previousStep()" id="previousPagePersonalData">Anterior</button>
+                <!-- -->
+                <button [disabled]="!form2.valid" color="primary" md-raised-button style="margin-left: 8px;" (click)="nextStep()" type="button"
+                  id="savePersonalFamilyHistory">Siguiente</button>
+              </div>
+            </div>
+          </form>
+        </md-tab>
+        <!--  -->
+        <md-tab label="Ciclo de Ventas" [disabled]="!form.valid">
+          <form #form3="ngForm" id="AtPesentYou" name="AtPesentYou" class="AtPesentYou">
+            <div fxLayout="column" style="padding: 16px;" class="healthHistory">
+              <div fxLayout="row" fxLayoutAlign="end center">
+                <button md-button type="button" (click)="previousStep()" id="previousPagePersonalData">Anterior</button>
+                <!-- -->
+                <button [disabled]="!form2.valid" color="primary" md-raised-button style="margin-left: 8px;" (click)="nextStep()" type="button"
+                  id="savePersonalFamilyHistory">Siguiente</button>
+              </div>
+            </div>
+          </form>
+        </md-tab>
 
-              <md-tab label="Indicadores" [disabled]="!form.valid">
-                <form #form5="ngForm" id="AtPesentYou" name="AtPesentYou" class="AtPesentYou">
-                  <div fxLayout="column" style="padding: 16px;" class="healthHistory">
-                    <div fxLayout="row" fxLayoutAlign="end center">
-                      <button md-button type="button" (click)="previousStep()" id="previousPagePersonalData">Anterior</button>
-                      <!-- -->
-                      <button [disabled]="!form2.valid" color="primary" md-raised-button style="margin-left: 8px;" (click)="nextStep()" type="button"
-                        id="savePersonalFamilyHistory">Siguiente</button>
-                    </div>
-                  </div>
-                </form>
-              </md-tab>
-              <!--  -->
-              <md-tab label="Otros" [disabled]="!form.valid">
-                <form #form4="ngForm" id="Lifestyle" name="Lifestyle">
-                  <div fxLayout="column" class="Lifestyle">
-                    <div fxLayout="row" fxLayoutAlign="end center" style="padding: 16px;">
-                      <button md-button type="button" (click)="previousStep()" id="previousPagePersonalData">Anterior</button>
-                      <!-- -->
-                      <button [disabled]="!form4.valid" color="primary" md-raised-button style="margin-left: 8px;" (click)="saveData()" type="button"
-                        id="savePersonalFamilyHistory">Guardar</button>
-                    </div>
-                  </div>
+        <md-tab label="Negociación Anterior" [disabled]="!form.valid">
+          <form #form4="ngForm" id="AtPesentYou" name="AtPesentYou" class="AtPesentYou">
+            <div fxLayout="column" style="padding: 16px;" class="healthHistory">
+              <div fxLayout="row" fxLayoutAlign="end center">
+                <button md-button type="button" (click)="previousStep()" id="previousPagePersonalData">Anterior</button>
+                <!-- -->
+                <button [disabled]="!form2.valid" color="primary" md-raised-button style="margin-left: 8px;" (click)="nextStep()" type="button"
+                  id="savePersonalFamilyHistory">Siguiente</button>
+              </div>
+            </div>
+          </form>
+        </md-tab>
 
-                </form>
-              </md-tab>
-            </md-tab-group>
-          </md-card-content>
-        </md-card>
-      </div>
+        <md-tab label="Indicadores" [disabled]="!form.valid">
+          <form #form5="ngForm" id="AtPesentYou" name="AtPesentYou" class="AtPesentYou">
+            <div fxLayout="column" style="padding: 16px;" class="healthHistory">
+              <div fxLayout="row" fxLayoutAlign="end center">
+                <button md-button type="button" (click)="previousStep()" id="previousPagePersonalData">Anterior</button>
+                <!-- -->
+                <button [disabled]="!form2.valid" color="primary" md-raised-button style="margin-left: 8px;" (click)="nextStep()" type="button"
+                  id="savePersonalFamilyHistory">Siguiente</button>
+              </div>
+            </div>
+          </form>
+        </md-tab>
+        <!--  -->
+        <md-tab label="Otros" [disabled]="!form.valid">
+          <form #form4="ngForm" id="Lifestyle" name="Lifestyle">
+            <div fxLayout="column" class="Lifestyle">
+              <div fxLayout="row" fxLayoutAlign="end center" style="padding: 16px;">
+                <button md-button type="button" (click)="previousStep()" id="previousPagePersonalData">Anterior</button>
+                <!-- -->
+                <button [disabled]="!form4.valid" color="primary" md-raised-button style="margin-left: 8px;" (click)="saveData()" type="button"
+                  id="savePersonalFamilyHistory">Guardar</button>
+              </div>
+            </div>
+
+          </form>
+        </md-tab>
+      </md-tab-group>
+    </md-card-content>
+  </md-card>
+
+</div>

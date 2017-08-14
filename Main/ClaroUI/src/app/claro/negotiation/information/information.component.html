@@ -70,8 +70,30 @@
         </md-tab>
         <!--  -->
         <md-tab label="Fechas" [disabled]="!form.valid">
-          <form #form2="ngForm" id="HealthHistory" name="HealthHistory">
-            <div fxLayout="column" style="padding: 16px;" class="healthHistory">
+          <form #form2="ngForm" id="dates" name="dates">
+            <div fxLayout="column" style="padding: 16px;" class="dates">
+              <div fxLayout="column" fxLayout.gt-sm="row">
+
+                <md-input-container fxFlex>
+                  <input mdInput [mdDatepicker]="startDate" placeholder="Fecha Inicio" id="startDate" name="startDate" [(ngModel)]="dates.startDate">
+                  <button mdSuffix [mdDatepickerToggle]="startDate"></button>
+                </md-input-container>
+                <md-datepicker #startDate></md-datepicker>
+
+                <md-input-container fxFlex>
+                  <input mdInput [mdDatepicker]="endDate" placeholder="Fecha Fin" id="endDate" name="endDate" [(ngModel)]="dates.endDate">
+                  <button mdSuffix [mdDatepickerToggle]="endDate"></button>
+                </md-input-container>
+                <md-datepicker #endDate></md-datepicker>
+
+              </div>
+              <div fxLayout="column" fxLayout.gt-sm="row">
+                <md-input-container fxFlex>
+                  <input mdInput name="months" id="months" [(ngModel)]="dates.months" disabled ngModel placeholder="Meses">
+                </md-input-container>
+                <div fxFlex>
+                </div>
+              </div>
               <div fxLayout="row" fxLayoutAlign="end center">
                 <button md-button type="button" (click)="previousStep()" id="previousPagePersonalData">Anterior</button>
                 <!-- -->

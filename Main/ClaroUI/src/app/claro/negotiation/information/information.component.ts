@@ -5,6 +5,7 @@ import { fadeInAnimation } from "../../../route.animation";
 import { MdSnackBar } from "@angular/material";
 
 import { InformationCustomer } from "../../models/information/information.customer.model";
+import { InformationDates } from "../../models/information/information.dates.model";
 
 @Component({
   selector: 'ms-information',
@@ -22,6 +23,7 @@ export class InformationComponent implements OnInit {
   reactiveCustomers: any;
 
   customer = new InformationCustomer();
+  dates = new InformationDates();
 
 
   private selectedIndexTabOne: number = 0;
@@ -29,7 +31,7 @@ export class InformationComponent implements OnInit {
   position = 'before';
 
 
-  constructor(private snackBar: MdSnackBar) { 
+  constructor(private snackBar: MdSnackBar) {
 
     this.customerCtrl = new FormControl({ code: '', name: '' });
     this.reactiveCustomers = this.customerCtrl.valueChanges

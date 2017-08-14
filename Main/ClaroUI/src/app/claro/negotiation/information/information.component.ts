@@ -6,6 +6,7 @@ import { MdSnackBar } from "@angular/material";
 
 import { InformationCustomer } from "../../models/information/information.customer.model";
 import { InformationDates } from "../../models/information/information.dates.model";
+import { InformationSalesCycle } from "../../models/information/information.salesCycle.model";
 
 @Component({
   selector: 'ms-information',
@@ -24,6 +25,7 @@ export class InformationComponent implements OnInit {
 
   customer = new InformationCustomer();
   dates = new InformationDates();
+  salesCycle = new InformationSalesCycle();
 
 
   private selectedIndexTabOne: number = 0;

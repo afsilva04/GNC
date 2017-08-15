@@ -6,11 +6,13 @@ export class ProductPlan {
     quantityNoCostCfm: number; // NUMERO DE CFM  SIN COSTO PLAN
 
     constructor(model: any = null) {
-        this.name = model.name;
-        this.type = model.type;
-        this.category = model.category;
-        this.CfmNoIva = model.CfmNoIva;
-        this.quantityNoCostCfm = model.quantityNoCostCfm;
+        if (model) {
+            this.name = model.name;
+            this.type = model.type;
+            this.category = model.category;
+            this.CfmNoIva = model.CfmNoIva;
+            this.quantityNoCostCfm = model.quantityNoCostCfm;
+        }
     }
 }
 

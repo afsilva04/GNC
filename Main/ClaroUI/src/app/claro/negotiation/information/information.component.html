@@ -31,31 +31,31 @@
                 </md-input-container>
                 <md-input-container fxFlex>
                   <input mdInput name="commercialAssignment" id="commercialAssignment" [(ngModel)]="customer.commercialAssignment" disabled
-                     placeholder="Asignación Comercial">
+                    placeholder="Asignación Comercial">
                 </md-input-container>
               </div>
 
               <div fxLayout="column" fxLayout.gt-sm="row">
                 <md-input-container fxFlex>
-                  <input mdInput name="region" id="region" [(ngModel)]="customer.region" disabled  placeholder="Región">
+                  <input mdInput name="region" id="region" [(ngModel)]="customer.region" disabled placeholder="Región">
                 </md-input-container>
                 <md-input-container fxFlex>
-                  <input mdInput name="subArea" id="subArea" [(ngModel)]="customer.subArea" disabled  placeholder="Subzona">
-                </md-input-container>
-              </div>
-
-              <div fxLayout="column" fxLayout.gt-sm="row">
-                <md-input-container fxFlex>
-                  <input mdInput name="currentLines" id="currentLines" [(ngModel)]="customer.currentLines" disabled  placeholder="Líneas Actuales">
-                </md-input-container>
-                <md-input-container fxFlex>
-                  <input mdInput name="valueArpu" id="valueArpu" [(ngModel)]="customer.valueArpu" disabled  placeholder="Valor Arpu">
+                  <input mdInput name="subArea" id="subArea" [(ngModel)]="customer.subArea" disabled placeholder="Subzona">
                 </md-input-container>
               </div>
 
               <div fxLayout="column" fxLayout.gt-sm="row">
                 <md-input-container fxFlex>
-                  <input mdInput name="averageArpuLine" id="averageArpuLine" [(ngModel)]="customer.averageArpuLine" disabled  placeholder="Promedio Arpu por Línea">
+                  <input mdInput name="currentLines" id="currentLines" [(ngModel)]="customer.currentLines" disabled placeholder="Líneas Actuales">
+                </md-input-container>
+                <md-input-container fxFlex>
+                  <input mdInput name="valueArpu" id="valueArpu" [(ngModel)]="customer.valueArpu" disabled placeholder="Valor Arpu">
+                </md-input-container>
+              </div>
+
+              <div fxLayout="column" fxLayout.gt-sm="row">
+                <md-input-container fxFlex>
+                  <input mdInput name="averageArpuLine" id="averageArpuLine" [(ngModel)]="customer.averageArpuLine" disabled placeholder="Promedio Arpu por Línea">
                 </md-input-container>
                 <div fxFlex>
                 </div>
@@ -68,8 +68,8 @@
             </div>
           </form>
         </md-tab>
-        <!--  -->
-        <md-tab label="Fechas" [disabled]="!form.valid">
+        <!-- [disabled]="!form.valid" -->
+        <md-tab label="Fechas">
           <form #form2="ngForm" id="dates" name="dates">
             <div fxLayout="column" style="padding: 16px;" class="dates">
               <div fxLayout="column" fxLayout.gt-sm="row">
@@ -89,7 +89,7 @@
               </div>
               <div fxLayout="column" fxLayout.gt-sm="row">
                 <md-input-container fxFlex>
-                  <input mdInput name="months" id="months" [(ngModel)]="dates.months" disabled  placeholder="Meses">
+                  <input mdInput name="months" id="months" [(ngModel)]="dates.months" disabled placeholder="Meses">
                 </md-input-container>
               </div>
               <div fxLayout="row" fxLayoutAlign="end center">
@@ -101,14 +101,14 @@
             </div>
           </form>
         </md-tab>
-        <!--  -->
-        <md-tab label="Ciclo de Ventas" [disabled]="!form.valid">
+        <!--  [disabled]="!form.valid" -->
+        <md-tab label="Ciclo de Ventas">
           <form #form3="ngForm" id="AtPesentYou" name="AtPesentYou" class="AtPesentYou">
             <div fxLayout="column" style="padding: 16px;" class="healthHistory">
               <div fxLayout="column" fxLayout.gt-sm="row">
                 <md-input-container fxFlex>
-                    <input mdInput name="status" id="status" [(ngModel)]="salesCycle.status" disabled placeholder="Estado">
-                </md-input-container>                  
+                  <input mdInput name="status" id="status" [(ngModel)]="salesCycle.status" disabled placeholder="Estado">
+                </md-input-container>
               </div>
               <div fxLayout="row" fxLayoutAlign="end center">
                 <button md-button type="button" (click)="previousStep()" id="previousPagePersonalData">Anterior</button>
@@ -119,8 +119,8 @@
             </div>
           </form>
         </md-tab>
-        <!--  -->
-        <md-tab label="Negociación Anterior" [disabled]="!form.valid">
+        <!-- [disabled]="!form.valid" -->
+        <md-tab label="Negociación Anterior">
           <form #form4="ngForm" id="AtPesentYou" name="AtPesentYou" class="AtPesentYou">
             <div fxLayout="column" style="padding: 16px;" class="healthHistory">
 
@@ -196,8 +196,8 @@
             </div>
           </form>
         </md-tab>
-        <!--  -->
-        <md-tab label="Indicadores" [disabled]="!form.valid">
+        <!-- [disabled]="!form.valid" -->
+        <md-tab label="Indicadores">
           <form #form5="ngForm" id="AtPesentYou" name="AtPesentYou" class="AtPesentYou">
             <div fxLayout="column" style="padding: 16px;" class="healthHistory">
 
@@ -273,8 +273,8 @@
             </div>
           </form>
         </md-tab>
-        <!--  -->
-        <md-tab label="Otros" [disabled]="!form.valid">
+        <!-- [disabled]="!form.valid" -->
+        <md-tab label="Otros">
           <form #form4="ngForm" id="Lifestyle" name="Lifestyle">
             <div fxLayout="column" class="Lifestyle">
 

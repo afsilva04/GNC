@@ -1,8 +1,34 @@
 <div fxLayout="row" fxLayoutAlign="center center" class="contentnegotiation">
   <md-card fxFlex="90%" style="padding: 0;">
-    <md-toolbar color="primary" class="toolbar">Ingreso de productos</md-toolbar>
+    <md-toolbar color="primary" class="toolbar">
+      <span>Productos Asociados</span>
+    </md-toolbar>
+    <md-card-content>
+      <table class="table" [class.table-hover]="tableHover" [class.table-striped]="tableStriped" [class.table-condensed]="tableCondensed"
+        [class.table-bordered]="tableBordered">
+        <thead>
+          <tr>
+            <th>Lineas</th>
+            <th>Plan</th>
+            <th>Paquete</th>
+            <th>Equipo</th>
+            <th>Permanencia</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let item of associateProducts">
+            <td>{{ item.line}} </td>
+            <td>{{ item.plan }}</td>
+            <td>{{ item.package }}</td>
+            <td>{{ item.device }}</td>
+            <td>{{ item.permanence }}</td>
+          </tr>
+        </tbody>
+      </table>
+    </md-card-content>
+  </md-card>
 </div>
-
+<br>
 <div fxLayout="row" fxLayoutAlign="center center" class="contentnegotiation">
   <md-card fxFlex="90%" style="padding: 0;">
     <md-toolbar color="primary" class="toolbar">Ingreso de productos</md-toolbar>
@@ -11,21 +37,98 @@
         <md-tab label="Plan">
           <form #form="ngForm">
             <div fxLayout="column" style="padding: 16px;">
-
+              <div fxLayout="column" fxLayout.gt-sm="row">
+                <div fxFlex>
+                  <md-input-container>
+                    <input mdInput name="saleType" id="saleType" [(ngModel)]="general.saleType" placeholder="Tipo de Venta" [mdAutocomplete]="saleTypeAuto"
+                      [formControl]="saleTypeCtrl">
+                  </md-input-container>
+                  <md-autocomplete #saleTypeAuto [displayWith]="displayFn">
+                    <md-option *ngFor="let saleType of filteredSaleTypes | async" [value]="saleType">
+                      <span>{{ saleType.name }}</span>
+                      <span class="demo-secondary-text"> ({{saleType.code}}) </span>
+                    </md-option>
+                  </md-autocomplete>
+                </div>
+                <md-input-container fxFlex>
+                  <input mdInput name="quantityLines" id="quantityLines" [(ngModel)]="general.quantityLines" placeholder="Numero de lineas"
+                    type="number">
+                </md-input-container>
+              </div>
+              <div fxLayout="column" fxLayout.gt-sm="row">
+                <div fxFlex>
+                  <md-input-container>
+                    <input mdInput name="name" id="name" [(ngModel)]="plan.name" placeholder="Nombre del plan" [mdAutocomplete]="planNameAuto"
+                      [formControl]="planNameCtrl">
+                  </md-input-container>
+                  <md-autocomplete #planNameAuto="mdAutocomplete">
+                    <md-option *ngFor="let planName of filteredPlanNames | async" [value]="planName.name">
+                      {{ planName.name }}
+                    </md-option>
+                  </md-autocomplete>
+                </div>
+                <div fxFlex>
+                  <md-input-container>
+                    <input mdInput name="planType" id="planType" [(ngModel)]="plan.type" placeholder="Tipo de plan" disabled>
+                  </md-input-container>
+                </div>
+              </div>
+              <div fxLayout="column" fxLayout.gt-sm="row">
+                <md-input-container fxFlex>
+                  <input mdInput name="planCategory" id="planCategory" [(ngModel)]="plan.category" placeholder="Categoria del plan" disabled>
+                </md-input-container>
+                <md-input-container fxFlex>
+                  <input mdInput name="planCfmNoIva" id="planCfmNoIva" [(ngModel)]="plan.CfmNoIva" placeholder="CFM sin IVA" disabled >
+                </md-input-container>
+              </div>
+              <div fxLayout="column" fxLayout.gt-sm="row">
+                <md-input-container fxFlex>
+                  <input mdInput name="planQuatityNoCostCfm" id="planQuatityNoCostCfm" [(ngModel)]="plan.quantityNoCostCfm" placeholder="Número de CFM sin costo"
+                    type="number">
+                </md-input-container>
+                <md-input-container fxFlex>
+                  <input mdInput name="permanenceClause" id="permanenceClause" [(ngModel)]="plan.permanenceClause" placeholder="Clausula de Permanencia (en años)"
+                    type="number">
+                </md-input-container>
+              </div>
               <div fxLayout="row" fxLayoutAlign="end center">
                 <!--[disabled]="!form.valid" -->
                 <button id="savePlanInformation" color="primary" md-raised-button style="margin-left: 8px;" (click)="nextStep()" type="button">Siguiente</button>
               </div>
             </div>
+
           </form>
         </md-tab>
         <!--  -->
-        <md-tab label="Fechas" [disabled]="!form.valid">
-          <form #form2="ngForm" id="HealthHistory" name="HealthHistory">
-            <div fxLayout="column" style="padding: 16px;" class="healthHistory">
+        <md-tab label="Paquetes" [disabled]="!form.valid">
+          <form #form2="ngForm">
+            <div fxLayout="column" style="padding: 16px;">
+              <div fxLayout="column" fxLayout.gt-sm="row">
+                <md-input-container fxFlex>
+                  <input mdInput name="packageName" id="packageName" [(ngModel)]="package.name" placeholder="Nombre del paquete" [mdAutocomplete]="paqNameAuto"
+                    [formControl]="paqNameCtrl">
+                  <md-autocomplete #paqNameAuto>
+                    <md-option *ngFor="let paqName of filteredPaqNames | async" [value]="paqName.name">
+                      {{paqName.name}}
+                    </md-option>
+                  </md-autocomplete>
+                </md-input-container>
+                <md-input-container fxFlex>
+                  <input mdInput name="packageType" id="packageType" [(ngModel)]="package.type" placeholder="Tipo de Paquete" disabled>
+                </md-input-container>
+              </div>
+              <div fxLayout="column" fxLayout.gt-sm="row">
+                <md-input-container fxFlex>
+                  <input mdInput name="packCfmNoIva" id="packCfmNoIva" [(ngModel)]="package.CfmNoIva" placeholder="CFM sin IVA" type="number">
+                </md-input-container>
+                <md-input-container fxFlex>
+                  <input mdInput name="packQuantityNoCostCfm" id="packQuantityNoCostCfm" [(ngModel)]="package.quantityNoCostCfm" placeholder="Numero de CFM sin IVA"
+                    type="number">
+                </md-input-container>
+              </div>
               <div fxLayout="row" fxLayoutAlign="end center">
                 <button md-button type="button" (click)="previousStep()" id="previousPagePersonalData">Anterior</button>
-                <!-- -->
+
                 <button [disabled]="!form2.valid" color="primary" md-raised-button style="margin-left: 8px;" (click)="nextStep()" type="button"
                   id="savePersonalFamilyHistory">Siguiente</button>
               </div>
@@ -33,9 +136,55 @@
           </form>
         </md-tab>
         <!--  -->
-        <md-tab label="Ciclo de Ventas" [disabled]="!form.valid">
-          <form #form3="ngForm" id="AtPesentYou" name="AtPesentYou" class="AtPesentYou">
-            <div fxLayout="column" style="padding: 16px;" class="healthHistory">
+        <md-tab label="Equipos" [disabled]="!form.valid">
+          <form #form3="ngForm">
+            <div fxLayout="column" style="padding: 16px;">
+              <div fxLayout="column" fxLayout.gt-sm="row">
+                <md-input-container fxFlex>
+                  <input mdInput name="rotation" id="rotation" [(ngModel)]="device.rotation" placeholder="Rotacion" required>
+                </md-input-container>
+                <md-input-container fxFlex>
+                  <input mdInput name="reference" id="reference" [(ngModel)]="device.reference" placeholder="Referencia" [mdAutocomplete]="devRefAuto"
+                    [formControl]="devRefCtrl" required>
+                  <md-autocomplete #devRefAuto>
+                    <md-option *ngFor="let devRef of filteredDevRefs | async" [value]="devRef.name">
+                      {{devRef.name}}
+                    </md-option>
+                  </md-autocomplete>
+                </md-input-container>
+              </div>
+              <div fxLayout="column" fxLayout.gt-sm="row">
+                <md-input-container fxFlex>
+                  <input mdInput name="source" id="source" [(ngModel)]="device.source" placeholder="Origen" [mdAutocomplete]="devSourceAuto"
+                    [formControl]="devSourceCtrl" required>
+                  <md-autocomplete #devSourceAuto>
+                    <md-option *ngFor="let devSource of filteredDevSources | async" [value]="devSource.name">
+                      {{devSource.name}}
+                    </md-option>
+                  </md-autocomplete>
+                </md-input-container>
+                <md-input-container fxFlex>
+                  <input mdInput name="discountRate" id="discountRate" [(ngModel)]="device.discountRate" placeholder="Porcentaje de Descuento"
+                    type="number">
+                </md-input-container>
+              </div>
+              <div fxLayout="column" fxLayout.gt-sm="row">
+                <md-input-container fxFlex>
+                  <input mdInput name="sugPriceNoIva" id="sugPriceNoIva" [(ngModel)]="device.sugPriceNoIva" placeholder="Precio sugerido sin iva"
+                    type="number">
+                </md-input-container>
+                <md-input-container fxFlex>
+                  <input mdInput name="reqPriceNoIva" id="reqPriceNoIva" [(ngModel)]="device.reqPriceNoIva" placeholder="Precio solicitado sin iva"
+                    type="number" disabled value="{{device.fullPriceNoIva / device.discountRate}}">
+                </md-input-container>
+              </div>
+              <div fxLayout="column" fxLayout.gt-sm="row">
+                <md-input-container fxFlex>
+                  <input mdInput name="fullPriceNoIva" id="fullPriceNoIva" [(ngModel)]="device.fullPriceNoIva" placeholder="Full precio sin iva"
+                    type="number" >
+                </md-input-container>
+                <div fxFlex></div>
+              </div>
               <div fxLayout="row" fxLayoutAlign="end center">
                 <button md-button type="button" (click)="previousStep()" id="previousPagePersonalData">Anterior</button>
                 <!-- -->
@@ -48,7 +197,7 @@
 
         <md-tab label="Negociación Anterior" [disabled]="!form.valid">
           <form #form4="ngForm" id="AtPesentYou" name="AtPesentYou" class="AtPesentYou">
-            <div fxLayout="column" style="padding: 16px;" class="healthHistory">
+            <div fxLayout="column" style="padding: 16px;">
               <div fxLayout="row" fxLayoutAlign="end center">
                 <button md-button type="button" (click)="previousStep()" id="previousPagePersonalData">Anterior</button>
                 <!-- -->
@@ -61,7 +210,7 @@
 
         <md-tab label="Indicadores" [disabled]="!form.valid">
           <form #form5="ngForm" id="AtPesentYou" name="AtPesentYou" class="AtPesentYou">
-            <div fxLayout="column" style="padding: 16px;" class="healthHistory">
+            <div fxLayout="column" style="padding: 16px;">
               <div fxLayout="row" fxLayoutAlign="end center">
                 <button md-button type="button" (click)="previousStep()" id="previousPagePersonalData">Anterior</button>
                 <!-- -->

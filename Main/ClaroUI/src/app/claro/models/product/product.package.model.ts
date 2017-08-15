@@ -5,9 +5,11 @@ export class ProductPackage {
     quantityNoCostCfm: number; // NUMERO DE CFM  SIN COSTO PAQUETE
 
     constructor(model: any = null) {
-        this.name = model.name;
-        this.type = model.type;
-        this.CfmNoIva = model.CfmNoIva;
-        this.quantityNoCostCfm = model.quantityNoCostCfm;
+        if (model) {
+            this.name = model.name;
+            this.type = model.type;
+            this.CfmNoIva = model.CfmNoIva;
+            this.quantityNoCostCfm = model.quantityNoCostCfm;
+        }
     }
 }

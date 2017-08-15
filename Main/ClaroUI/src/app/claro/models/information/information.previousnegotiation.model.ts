@@ -1,36 +1,36 @@
 
 export class InformationPreviousNegotiation {
-    marginEbitda: string; //MARGEN EBITDA
-    others: string; //OTROS
-    financialRIO: string; //ROI FINANCIERO
-    quantityCmfPlans: string; //CANTIDAD DE CFM PLANES
-    quantityCmfPackages: string; //CANTIDAD DE CFM PAQUETES
-    permanence: string; //PERMANENCIA PACTADA
-    averageStayPending: string; //PROMEDIO PERMANENCIA PENDIENTE
-    valueDiscountEquipamentBag: string; //VALOR DESCUENTO EN EQUIPOS Y BOLSAS
-    valueDiscountCmfPlans: string; //VALOR DESCUENTO CFM PLANES
-    totalDiscountValue: string; //VALOR TOTAL DESCUENTOS
-    valueDiscountPackages: string; //VALOR DESCUENTO CFM PAQUETES
-    OthersDiscount: string; //OTROS DESCUENTOS
-    newLines: string; //LÍNEAS NUEVAS
-    totalIncomePermanence: string; //TOTAL INGRESO PROYECTADO PERMANENCIA
+    pnMarginEbitda: string; //MARGEN EBITDA
+    pnOthers: string; //OTROS
+    pnFinancialROI: string; //ROI FINANCIERO
+    pnQuantityCfmPlans: string; //CANTIDAD DE CFM PLANES
+    pnQuantityCfmPackages: string; //CANTIDAD DE CFM PAQUETES
+    pnPermanence: string; //PERMANENCIA PACTADA
+    pnAverageStayPending: string; //PROMEDIO PERMANENCIA PENDIENTE
+    pnValueDiscountEquipamentBag: string; //VALOR DESCUENTO EN EQUIPOS Y BOLSAS
+    pnValueDiscountCfmPlans: string; //VALOR DESCUENTO CFM PLANES
+    pnTotalDiscountValue: string; //VALOR TOTAL DESCUENTOS
+    pnValueDiscountPackages: string; //VALOR DESCUENTO CFM PAQUETES
+    pnOthersDiscount: string; //OTROS DESCUENTOS
+    pnNewLines: string; //LÍNEAS NUEVAS
+    pnTotalIncomePermanence: string; //TOTAL INGRESO PROYECTADO PERMANENCIA
 
     constructor(model: any = null) {
         if (model) {
-            this.marginEbitda = model.marginEbitda;
-            this.others = model.others;
-            this.financialRIO = model.financialRIO;
-            this.quantityCmfPlans = model.quantityCmfPlans;
-            this.quantityCmfPackages = model.quantityCmfPackages;
-            this.permanence = model.permanence;
-            this.averageStayPending = model.averageStayPending;
-            this.valueDiscountEquipamentBag = model.valueDiscountEquipamentBag;
-            this.valueDiscountCmfPlans = model.valueDiscountCmfPlans;
-            this.totalDiscountValue = model.totalDiscountValue;
-            this.valueDiscountPackages = model.valueDiscountPackages;
-            this.OthersDiscount = model.OthersDiscount;
-            this.newLines = model.newLines;
-            this.totalIncomePermanence = model.totalIncomePermanence;
+            this.pnMarginEbitda = model.pnMarginEbitda;
+            this.pnOthers = model.pnOthers;
+            this.pnFinancialROI = model.pnFinancialROI;
+            this.pnQuantityCfmPlans = model.pnQuantityCfmPlans;
+            this.pnQuantityCfmPackages = model.pnQuantityCfmPackages;
+            this.pnPermanence = model.pnPermanence;
+            this.pnAverageStayPending = model.pnAverageStayPending;
+            this.pnValueDiscountEquipamentBag = model.pnValueDiscountEquipamentBag;
+            this.pnValueDiscountCfmPlans = model.pnValueDiscountCfmPlans;
+            this.pnTotalDiscountValue = model.pnTotalDiscountValue;
+            this.pnValueDiscountPackages = model.pnValueDiscountPackages;
+            this.pnOthersDiscount = model.pnOthersDiscount;
+            this.pnNewLines = model.pnNewLines;
+            this.pnTotalIncomePermanence = model.pnTotalIncomePermanence;
         }
     }
 }

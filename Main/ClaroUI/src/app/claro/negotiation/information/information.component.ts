@@ -7,6 +7,9 @@ import { MdSnackBar } from "@angular/material";
 import { InformationCustomer } from "../../models/information/information.customer.model";
 import { InformationDates } from "../../models/information/information.dates.model";
 import { InformationSalesCycle } from "../../models/information/information.salesCycle.model";
+import { InformationPreviousNegotiation } from "../../models/information/information.PreviousNegotiation.model";
+import { InformationNegotiationIndicators } from "../../models/information/information.negotiationIndicators.model";
+import { InformationOther } from "../../models/information/information.other.model";
 
 @Component({
   selector: 'ms-information',
@@ -26,6 +29,9 @@ export class InformationComponent implements OnInit {
   customer = new InformationCustomer();
   dates = new InformationDates();
   salesCycle = new InformationSalesCycle();
+  previousNegotiation = new InformationPreviousNegotiation();
+  negotiationIndicators = new InformationNegotiationIndicators();
+  other = new InformationOther();
 
 
   private selectedIndexTabOne: number = 0;

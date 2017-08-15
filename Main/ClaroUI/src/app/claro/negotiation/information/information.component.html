@@ -119,10 +119,74 @@
             </div>
           </form>
         </md-tab>
-
+        <!--  -->
         <md-tab label="Negociación Anterior" [disabled]="!form.valid">
           <form #form4="ngForm" id="AtPesentYou" name="AtPesentYou" class="AtPesentYou">
             <div fxLayout="column" style="padding: 16px;" class="healthHistory">
+
+              <div fxLayout="column" fxLayout.gt-sm="row">
+                <md-input-container fxFlex>
+                  <input mdInput name="pnMarginEbitda" id="pnMarginEbitda" [(ngModel)]="previousNegotiation.pnMarginEbitda" disabled placeholder="Margen Ebitda">
+                </md-input-container>
+                <md-input-container fxFlex>
+                  <input mdInput name="pnOthers" id="pnOthers" [(ngModel)]="previousNegotiation.pnOthers" disabled placeholder="Otros">
+                </md-input-container>
+              </div>
+
+              <div fxLayout="column" fxLayout.gt-sm="row">
+                <md-input-container fxFlex>
+                  <input mdInput name="pnFinancialROI" id="pnFinancialROI" [(ngModel)]="previousNegotiation.pnFinancialROI" disabled placeholder="ROI Financiero">
+                </md-input-container>
+                <md-input-container fxFlex>
+                  <input mdInput name="pnQuantityCfmPlans" id="pnQuantityCfmPlans" [(ngModel)]="previousNegotiation.pnQuantityCfmPlans" disabled placeholder="Cantidad De CFM Planes">
+                </md-input-container>
+              </div>
+
+              <div fxLayout="column" fxLayout.gt-sm="row">
+                <md-input-container fxFlex>
+                  <input mdInput name="pnQuantityCfmPackages" id="pnQuantityCfmPackages" [(ngModel)]="previousNegotiation.pnQuantityCfmPackages" disabled placeholder="Cantidad De CFM Paquetes">
+                </md-input-container>
+                <md-input-container fxFlex>
+                  <input mdInput name="pnPermanence" id="pnPermanence" [(ngModel)]="previousNegotiation.pnPermanence" disabled placeholder="Permanencia Pactada">
+                </md-input-container>
+              </div>
+
+              <div fxLayout="column" fxLayout.gt-sm="row">
+                <md-input-container fxFlex>
+                  <input mdInput name="pnAverageStayPending" id="pnAverageStayPending" [(ngModel)]="previousNegotiation.pnAverageStayPending" disabled placeholder="Promedio Permanencia Pendiente">
+                </md-input-container>
+                <md-input-container fxFlex>
+                  <input mdInput name="pnValueDiscountEquipamentBag" id="pnValueDiscountEquipamentBag" [(ngModel)]="previousNegotiation.pnValueDiscountEquipamentBag" disabled placeholder="Valor Descuento en Equipos y Bolsas">
+                </md-input-container>
+              </div>
+
+              <div fxLayout="column" fxLayout.gt-sm="row">
+                <md-input-container fxFlex>
+                  <input mdInput name="pnTotalDiscountValue" id="pnTotalDiscountValue" [(ngModel)]="previousNegotiation.pnTotalDiscountValue" disabled placeholder="Valor Total Descuentos">
+                </md-input-container>
+                <md-input-container fxFlex>
+                  <input mdInput name="pnValueDiscountPackages" id="pnValueDiscountPackages" [(ngModel)]="previousNegotiation.pnValueDiscountPackages" disabled placeholder="Valor Descuento CFM Paquetes">
+                </md-input-container>
+              </div>
+
+              <div fxLayout="column" fxLayout.gt-sm="row">
+                <md-input-container fxFlex>
+                  <input mdInput name="pnNewLines" id="pnNewLines" [(ngModel)]="previousNegotiation.pnNewLines" disabled placeholder="Líneas Nuevas">
+                </md-input-container>
+                <md-input-container fxFlex>
+                  <input mdInput name="pnOthersDiscount" id="pnOthersDiscount" [(ngModel)]="previousNegotiation.pnOthersDiscount" disabled placeholder="Otros Descuentos">
+                </md-input-container>
+              </div>
+
+              <div fxLayout="column" fxLayout.gt-sm="row">
+                <md-input-container fxFlex>
+                  <input mdInput name="pnValueDiscountCfmPlans" id="pnValueDiscountCfmPlans" [(ngModel)]="previousNegotiation.pnValueDiscountCfmPlans" disabled placeholder="Valor Descuento CFM Planes">
+                </md-input-container>
+                <md-input-container fxFlex>
+                  <input mdInput name="pnTotalIncomePermanence" id="pnTotalIncomePermanence" [(ngModel)]="previousNegotiation.pnTotalIncomePermanence" disabled placeholder="Total Ingreso Proyectado Permanencia">
+                </md-input-container>
+              </div>
+              
               <div fxLayout="row" fxLayoutAlign="end center">
                 <button md-button type="button" (click)="previousStep()" id="previousPagePersonalData">Anterior</button>
                 <!-- -->
@@ -132,10 +196,74 @@
             </div>
           </form>
         </md-tab>
-
+        <!--  -->
         <md-tab label="Indicadores" [disabled]="!form.valid">
           <form #form5="ngForm" id="AtPesentYou" name="AtPesentYou" class="AtPesentYou">
             <div fxLayout="column" style="padding: 16px;" class="healthHistory">
+
+              <div fxLayout="column" fxLayout.gt-sm="row">
+                <md-input-container fxFlex>
+                  <input mdInput name="niMarginEbitda" id="niMarginEbitda" [(ngModel)]="negotiationIndicators.niMarginEbitda" disabled placeholder="Margen Ebitda">
+                </md-input-container>
+                <md-input-container fxFlex>
+                  <input mdInput name="niOthers" id="niOthers" [(ngModel)]="negotiationIndicators.niOthers" disabled placeholder="Otros">
+                </md-input-container>
+              </div>
+
+              <div fxLayout="column" fxLayout.gt-sm="row">
+                <md-input-container fxFlex>
+                  <input mdInput name="niFinancialROI" id="niFinancialROI" [(ngModel)]="negotiationIndicators.niFinancialROI" disabled placeholder="ROI Financiero">
+                </md-input-container>
+                <md-input-container fxFlex>
+                  <input mdInput name="niQuantityCfmPlans" id="niQuantityCfmPlans" [(ngModel)]="negotiationIndicators.niQuantityCfmPlans" disabled placeholder="Cantidad de CFM Planes">
+                </md-input-container>
+              </div>
+
+              <div fxLayout="column" fxLayout.gt-sm="row">
+                <md-input-container fxFlex>
+                  <input mdInput name="niQuantityCfmPackages" id="niQuantityCfmPackages" [(ngModel)]="negotiationIndicators.niQuantityCfmPackages" disabled placeholder="Cantidad de CFM Paquetes">
+                </md-input-container>
+                <md-input-container fxFlex>
+                  <input mdInput name="niPermanence" id="niPermanence" [(ngModel)]="negotiationIndicators.niPermanence" disabled placeholder="Permanencia Pactada">
+                </md-input-container>
+              </div>
+
+              <div fxLayout="column" fxLayout.gt-sm="row">
+                <md-input-container fxFlex>
+                  <input mdInput name="niAverageStayPending" id="niAverageStayPending" [(ngModel)]="negotiationIndicators.niAverageStayPending" disabled placeholder="Promedio Permanencia Pendiente">
+                </md-input-container>
+                <md-input-container fxFlex>
+                  <input mdInput name="niValueDiscountEquipamentBag" id="niValueDiscountEquipamentBag" [(ngModel)]="negotiationIndicators.niValueDiscountEquipamentBag" disabled placeholder="Valor Descuento en Equipos y Bolsas">
+                </md-input-container>
+              </div>
+
+              <div fxLayout="column" fxLayout.gt-sm="row">
+                <md-input-container fxFlex>
+                  <input mdInput name="niAverageStayPending" id="niAverageStayPending" [(ngModel)]="negotiationIndicators.niAverageStayPending" disabled placeholder="Promedio Permanencia Pendiente">
+                </md-input-container>
+                <md-input-container fxFlex>
+                  <input mdInput name="niValueDiscountEquipamentBag" id="niValueDiscountEquipamentBag" [(ngModel)]="negotiationIndicators.niValueDiscountEquipamentBag" disabled placeholder="Valor Descuento en Equipos y Bolsas">
+                </md-input-container>
+              </div>
+
+              <div fxLayout="column" fxLayout.gt-sm="row">
+                <md-input-container fxFlex>
+                  <input mdInput name="niTotalDiscountValue" id="niTotalDiscountValue" [(ngModel)]="negotiationIndicators.niTotalDiscountValue" disabled placeholder="Valor Total Descuentos">
+                </md-input-container>
+                <md-input-container fxFlex>
+                  <input mdInput name="niValueDiscountCfmPackages" id="niValueDiscountCfmPackages" [(ngModel)]="negotiationIndicators.niValueDiscountCfmPackages" disabled placeholder="Valor Descuento CFM Paquetes">
+                </md-input-container>
+              </div>
+
+              <div fxLayout="column" fxLayout.gt-sm="row">
+                <md-input-container fxFlex>
+                  <input mdInput name="niValueDiscountCfmPlans" id="niValueDiscountCfmPlans" [(ngModel)]="negotiationIndicators.niValueDiscountCfmPlans" disabled placeholder="Valor Descuento CFM Planes">
+                </md-input-container>
+                <md-input-container fxFlex>
+                  <input mdInput name="niOtherDiscounts" id="niOtherDiscounts" [(ngModel)]="negotiationIndicators.niOtherDiscounts" disabled placeholder="Otros Descuentos">
+                </md-input-container>
+              </div>
+
               <div fxLayout="row" fxLayoutAlign="end center">
                 <button md-button type="button" (click)="previousStep()" id="previousPagePersonalData">Anterior</button>
                 <!-- -->
@@ -149,6 +277,77 @@
         <md-tab label="Otros" [disabled]="!form.valid">
           <form #form4="ngForm" id="Lifestyle" name="Lifestyle">
             <div fxLayout="column" class="Lifestyle">
+
+              <div fxLayout="column" fxLayout.gt-sm="row">
+                <md-input-container fxFlex>
+                  <input mdInput name="segment" id="segment" [(ngModel)]="other.segment" placeholder="Segmento">
+                </md-input-container>
+                <md-input-container fxFlex>
+                  <input mdInput name="autorizationType" id="autorizationType" [(ngModel)]="other.autorizationType" placeholder="Tipo de Autorización">
+                </md-input-container>
+              </div>
+
+              <div fxLayout="column" fxLayout.gt-sm="row">
+                <md-input-container fxFlex>
+                  <input mdInput name="monthAntiquity" id="monthAntiquity" [(ngModel)]="other.monthAntiquity" placeholder="Antigüedad Meses">
+                </md-input-container>
+                <md-input-container fxFlex>
+                  <input mdInput name="monthCurrentBilling" id="monthCurrentBilling" [(ngModel)]="other.monthCurrentBilling" placeholder="Facturación Actual Mes">
+                </md-input-container>
+              </div>
+
+              <div fxLayout="column" fxLayout.gt-sm="row">
+                <md-input-container fxFlex>
+                  <input mdInput name="otherNewLines" id="otherNewLines" [(ngModel)]="other.otherNewLines" placeholder="Líneas Nuevas">
+                </md-input-container>
+                <md-input-container fxFlex>
+                  <input mdInput name="monthNewLinesTotalBillingValue" id="monthNewLinesTotalBillingValue" [(ngModel)]="other.monthNewLinesTotalBillingValue" placeholder="Valor Facturación Total Líneas Nuevas Mes">
+                </md-input-container>
+              </div>
+
+              <div fxLayout="column" fxLayout.gt-sm="row">
+                <md-input-container fxFlex>
+                  <input mdInput name="monthNewLinesAvgBillingValue" id="monthNewLinesAvgBillingValue" [(ngModel)]="other.monthNewLinesAvgBillingValue" disabled placeholder="Valor Promedio Facturación Nueva Línea Mes"
+                  value="{{other.monthNewLinesTotalBillingValue}} / {{other.otherNewLines}}">
+                </md-input-container>
+                <md-input-container fxFlex>
+                  <input mdInput name="riskCustomer" id="riskCustomer" [(ngModel)]="other.riskCustomer" placeholder="Cliente en Riesgo">
+                </md-input-container>
+              </div>
+
+              <div fxLayout="column" fxLayout.gt-sm="row">
+                <md-input-container fxFlex>
+                  <input mdInput name="offerCompetence" id="offerCompetence" [(ngModel)]="other.offerCompetence" placeholder="Oferta de la Competencia">
+                </md-input-container>
+                <md-input-container fxFlex>
+                  <input mdInput name="offerCompetenceDescr" id="offerCompetenceDescr" [(ngModel)]="other.offerCompetenceDescr" placeholder="Descripción Oferta Competencia">
+                </md-input-container>
+              </div>
+
+              <div fxLayout="column" fxLayout.gt-sm="row">
+                <md-input-container fxFlex>
+                  <input mdInput name="attachSupportOfferCompetence" id="attachSupportOfferCompetence" [(ngModel)]="other.attachSupportOfferCompetence" placeholder="¿Adjunta Soporte Oferta Competencia?">
+                </md-input-container>
+                <md-input-container fxFlex>
+                  <input mdInput name="ingressDecreasePlanChange" id="ingressDecreasePlanChange" [(ngModel)]="other.ingressDecreasePlanChange" placeholder="Disminución de Ingreso x Cambios de Plan">
+                </md-input-container>
+              </div>
+
+              <div fxLayout="column" fxLayout.gt-sm="row">
+                <md-input-container fxFlex>
+                  <input mdInput name="discountNewLinesItemsBagValue" id="discountNewLinesItemsBagValue" [(ngModel)]="other.discountNewLinesItemsBagValue" placeholder="Valor Bolsa y/o Descuento de Equipos Línea Nueva">
+                </md-input-container>
+                <md-input-container fxFlex>
+                  <input mdInput name="repositionItemsDiscountBagValue" id="repositionItemsDiscountBagValue" [(ngModel)]="other.repositionItemsDiscountBagValue" placeholder="Valor Bolsa ó Descuento de Equipos Reposiciones">
+                </md-input-container>
+              </div>
+              
+              <div fxLayout="column" fxLayout.gt-sm="row">
+                <md-input-container fxFlex>
+                  <input mdInput name="totalProjectIngressPermanency" id="totalProjectIngressPermanency" [(ngModel)]="other.totalProjectIngressPermanency" placeholder="Total Ingreso Proyectado Permanencia">
+                </md-input-container>
+              </div>
+
               <div fxLayout="row" fxLayoutAlign="end center" style="padding: 16px;">
                 <button md-button type="button" (click)="previousStep()" id="previousPagePersonalData">Anterior</button>
                 <!-- -->
@@ -156,11 +355,8 @@
                   id="savePersonalFamilyHistory">Guardar</button>
               </div>
             </div>
-
           </form>
         </md-tab>
-
-
 
       </md-tab-group>
     </md-card-content>

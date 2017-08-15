@@ -78,7 +78,7 @@
                   <input mdInput name="planCategory" id="planCategory" [(ngModel)]="plan.category" placeholder="Categoria del plan" disabled>
                 </md-input-container>
                 <md-input-container fxFlex>
-                  <input mdInput name="planCfmNoIva" id="planCfmNoIva" [(ngModel)]="plan.CfmNoIva" placeholder="CFM sin IVA" disabled>
+                  <input mdInput name="planCfmNoIva" id="planCfmNoIva" [(ngModel)]="plan.CfmNoIva" placeholder="CFM sin IVA" disabled >
                 </md-input-container>
               </div>
               <div fxLayout="column" fxLayout.gt-sm="row">
@@ -164,9 +164,9 @@
                   </md-autocomplete>
                 </md-input-container>
                 <md-input-container fxFlex>
-                    <input mdInput name="discountRate" id="discountRate" [(ngModel)]="device.discountRate" placeholder="Porcentaje de Descuento"
-                      type="number">
-                  </md-input-container>
+                  <input mdInput name="discountRate" id="discountRate" [(ngModel)]="device.discountRate" placeholder="Porcentaje de Descuento"
+                    type="number">
+                </md-input-container>
               </div>
               <div fxLayout="column" fxLayout.gt-sm="row">
                 <md-input-container fxFlex>
@@ -175,13 +175,13 @@
                 </md-input-container>
                 <md-input-container fxFlex>
                   <input mdInput name="reqPriceNoIva" id="reqPriceNoIva" [(ngModel)]="device.reqPriceNoIva" placeholder="Precio solicitado sin iva"
-                    type="number" disabled>
+                    type="number" disabled value="{{device.fullPriceNoIva / device.discountRate}}">
                 </md-input-container>
               </div>
               <div fxLayout="column" fxLayout.gt-sm="row">
                 <md-input-container fxFlex>
                   <input mdInput name="fullPriceNoIva" id="fullPriceNoIva" [(ngModel)]="device.fullPriceNoIva" placeholder="Full precio sin iva"
-                    type="number" disabled>
+                    type="number" >
                 </md-input-container>
                 <div fxFlex></div>
               </div>

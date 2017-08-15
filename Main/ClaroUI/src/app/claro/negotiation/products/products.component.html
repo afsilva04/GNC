@@ -40,12 +40,13 @@
               <div fxLayout="column" fxLayout.gt-sm="row">
                 <div fxFlex>
                   <md-input-container>
-                    <input mdInput name="type" id="type" [(ngModel)]="general.type" placeholder="Tipo de Plan" [mdAutocomplete]="planAuto" [formControl]="planCtrl">
+                    <input mdInput name="saleType" id="saleType" [(ngModel)]="general.saleType" placeholder="Tipo de Venta" [mdAutocomplete]="saleTypeAuto"
+                      [formControl]="saleTypeCtrl">
                   </md-input-container>
-                  <md-autocomplete #planAuto [displayWith]="displayFn">
-                    <md-option *ngFor="let item of filteredPlans | async" [value]="item">
-                      <span>{{ item.name }}</span>
-                      <span class="demo-secondary-text"> ({{item.code}}) </span>
+                  <md-autocomplete #saleTypeAuto [displayWith]="displayFn">
+                    <md-option *ngFor="let saleType of filteredSaleTypes | async" [value]="saleType">
+                      <span>{{ saleType.name }}</span>
+                      <span class="demo-secondary-text"> ({{saleType.code}}) </span>
                     </md-option>
                   </md-autocomplete>
                 </div>
@@ -103,21 +104,31 @@
           <form #form2="ngForm">
             <div fxLayout="column" style="padding: 16px;">
               <div fxLayout="column" fxLayout.gt-sm="row">
-                <!-- <div fxFlex>
-                  <md-input-container>
-                    <input mdInput name="packageName" id="packageName" [(ngModel)]="package.name" placeholder="Nombre del paquete" [mdAutocomplete]="paqNameAuto"
-                      [formControl]="paqNameCtrl">
-                    <md-autocomplete #paqNameAuto>
-                      <md-option *ngFor="let paqName of filteredPaqName">
-                        {{paqName.name}}
-                      </md-option>
-                    </md-autocomplete>
-                  </md-input-container>
-                </div> -->
+                <md-input-container fxFlex>
+                  <input mdInput name="packageName" id="packageName" [(ngModel)]="package.name" placeholder="Nombre del paquete" [mdAutocomplete]="paqNameAuto"
+                    [formControl]="paqNameCtrl">
+                  <md-autocomplete #paqNameAuto>
+                    <md-option *ngFor="let paqName of filteredPaqNames | async" [value]="paqName.name">
+                      {{paqName.name}}
+                    </md-option>
+                  </md-autocomplete>
+                </md-input-container>
+                <md-input-container fxFlex>
+                  <input mdInput name="packageType" id="packageType" [(ngModel)]="package.type" placeholder="Tipo de Paquete" disabled>
+                </md-input-container>
+              </div>
+              <div fxLayout="column" fxLayout.gt-sm="row">
+                <md-input-container fxFlex>
+                  <input mdInput name="packCfmNoIva" id="packCfmNoIva" [(ngModel)]="package.CfmNoIva" placeholder="CFM sin IVA" type="number">
+                </md-input-container>
+                <md-input-container fxFlex>
+                  <input mdInput name="packQuantityNoCostCfm" id="packQuantityNoCostCfm" [(ngModel)]="package.quantityNoCostCfm" placeholder="Numero de CFM sin IVA"
+                    type="number">
+                </md-input-container>
               </div>
               <div fxLayout="row" fxLayoutAlign="end center">
                 <button md-button type="button" (click)="previousStep()" id="previousPagePersonalData">Anterior</button>
-                <!-- -->
+
                 <button [disabled]="!form2.valid" color="primary" md-raised-button style="margin-left: 8px;" (click)="nextStep()" type="button"
                   id="savePersonalFamilyHistory">Siguiente</button>
               </div>
@@ -126,8 +137,54 @@
         </md-tab>
         <!--  -->
         <md-tab label="Equipos" [disabled]="!form.valid">
-          <form #form3="ngForm" id="AtPesentYou" name="AtPesentYou" class="AtPesentYou">
-            <div fxLayout="column" style="padding: 16px;" class="healthHistory">
+          <form #form3="ngForm">
+            <div fxLayout="column" style="padding: 16px;">
+              <div fxLayout="column" fxLayout.gt-sm="row">
+                <md-input-container fxFlex>
+                  <input mdInput name="rotation" id="rotation" [(ngModel)]="device.rotation" placeholder="Rotacion" required>
+                </md-input-container>
+                <md-input-container fxFlex>
+                  <input mdInput name="reference" id="reference" [(ngModel)]="device.reference" placeholder="Referencia" [mdAutocomplete]="devRefAuto"
+                    [formControl]="devRefCtrl" required>
+                  <md-autocomplete #devRefAuto>
+                    <md-option *ngFor="let devRef of filteredDevRefs | async" [value]="devRef.name">
+                      {{devRef.name}}
+                    </md-option>
+                  </md-autocomplete>
+                </md-input-container>
+              </div>
+              <div fxLayout="column" fxLayout.gt-sm="row">
+                <md-input-container fxFlex>
+                  <input mdInput name="source" id="source" [(ngModel)]="device.source" placeholder="Origen" [mdAutocomplete]="devSourceAuto"
+                    [formControl]="devSourceCtrl" required>
+                  <md-autocomplete #devSourceAuto>
+                    <md-option *ngFor="let devSource of filteredDevSources | async" [value]="devSource.name">
+                      {{devSource.name}}
+                    </md-option>
+                  </md-autocomplete>
+                </md-input-container>
+                <md-input-container fxFlex>
+                    <input mdInput name="discountRate" id="discountRate" [(ngModel)]="device.discountRate" placeholder="Porcentaje de Descuento"
+                      type="number">
+                  </md-input-container>
+              </div>
+              <div fxLayout="column" fxLayout.gt-sm="row">
+                <md-input-container fxFlex>
+                  <input mdInput name="sugPriceNoIva" id="sugPriceNoIva" [(ngModel)]="device.sugPriceNoIva" placeholder="Precio sugerido sin iva"
+                    type="number">
+                </md-input-container>
+                <md-input-container fxFlex>
+                  <input mdInput name="reqPriceNoIva" id="reqPriceNoIva" [(ngModel)]="device.reqPriceNoIva" placeholder="Precio solicitado sin iva"
+                    type="number" disabled>
+                </md-input-container>
+              </div>
+              <div fxLayout="column" fxLayout.gt-sm="row">
+                <md-input-container fxFlex>
+                  <input mdInput name="fullPriceNoIva" id="fullPriceNoIva" [(ngModel)]="device.fullPriceNoIva" placeholder="Full precio sin iva"
+                    type="number" disabled>
+                </md-input-container>
+                <div fxFlex></div>
+              </div>
               <div fxLayout="row" fxLayoutAlign="end center">
                 <button md-button type="button" (click)="previousStep()" id="previousPagePersonalData">Anterior</button>
                 <!-- -->
@@ -140,7 +197,7 @@
 
         <md-tab label="Negociación Anterior" [disabled]="!form.valid">
           <form #form4="ngForm" id="AtPesentYou" name="AtPesentYou" class="AtPesentYou">
-            <div fxLayout="column" style="padding: 16px;" class="healthHistory">
+            <div fxLayout="column" style="padding: 16px;">
               <div fxLayout="row" fxLayoutAlign="end center">
                 <button md-button type="button" (click)="previousStep()" id="previousPagePersonalData">Anterior</button>
                 <!-- -->
@@ -153,7 +210,7 @@
 
         <md-tab label="Indicadores" [disabled]="!form.valid">
           <form #form5="ngForm" id="AtPesentYou" name="AtPesentYou" class="AtPesentYou">
-            <div fxLayout="column" style="padding: 16px;" class="healthHistory">
+            <div fxLayout="column" style="padding: 16px;">
               <div fxLayout="row" fxLayoutAlign="end center">
                 <button md-button type="button" (click)="previousStep()" id="previousPagePersonalData">Anterior</button>
                 <!-- -->

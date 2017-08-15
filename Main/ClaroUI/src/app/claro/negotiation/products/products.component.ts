@@ -19,49 +19,61 @@ export class ProductsComponent implements OnInit {
   device = new ProductDevice();
   package = new ProductPackage();
 
-  planAuto: any; // local template var of autocomplete panel instance
-  planCtrl: FormControl; // track value of input
-  filteredPlans: any; // observable with filtered options based on valueChanges event
-
-  namePlanAuto: any;
+  /** FormControllers */
+  saleTypeCtrl: FormControl; // track value of input
   planNameCtrl: FormControl;
+  paqNameCtrl: FormControl;
+  devSourceCtrl: FormControl;
+  devRefCtrl: FormControl;
+
+  /** autocomplete variables */
+  saleTypeAuto: any; // local template var of autocomplete panel instance
+  namePlanAuto: any;
+  paqNameAuto: any;
+  devSourceAuto: any;
+  devRefAuto: any;
+
+  /** filtered sets */
+  filteredSaleTypes: any; // observable with filtered options based on valueChanges event
   filteredPlanNames: any;
+  filteredPaqNames: any;
+  filteredDevSources: any;
+  filteredDevRefs: any;
 
   private selectedIndexTabTwo = 0;
   position = 'before';
-  associateProducts = [
-    { line: '01', plan: 'Plan 1', package: 'Paquete 1', device: 'Nexus', permanence: '12 meses' },
-    { line: '02', plan: 'Plan 2', package: 'Paquete 2', device: 'Iphone', permanence: '12 meses' },
-    { line: '03', plan: 'Plan 3', package: 'Paquete 3', device: 'Moto G5', permanence: '24 meses' }
-  ];
-  typePlans = [
-    { code: '01', name: 'Plan 1' },
-    { code: '02', name: 'Plan 2' },
-  ];
-  planNames = [
-    { name: 'Claro Corp  TD 3150 Ilim' },
-    { name: 'Claro Corp  TD 3423 Ilim' },
-    { name: 'Claro Corp  Int 2312 Ilim' },
-    { name: '40 GB' },
-    { name: 'Claro Corp Full HD' }
-  ]
-
 
   constructor(private snackBar: MdSnackBar) {
-    this.planCtrl = new FormControl();
+    /** Inicialization of form controllers */
+    this.saleTypeCtrl = new FormControl();
     this.planNameCtrl = new FormControl();
+    this.paqNameCtrl = new FormControl();
+    this.devSourceCtrl = new FormControl();
+    this.devRefCtrl = new FormControl();
+
+    /** Inicialization of filters */
     this.filteredPlanNames = this.planNameCtrl.valueChanges
       .startWith(this.planNameCtrl.value)
-      .map(name => this.filterPlanNames(name));
-    this.filteredPlans = this.planCtrl.valueChanges
-      .startWith(this.planCtrl.value)
-      .map(val => this.displayFn(val))
-      .map(name => this.filterPlans(name));
-  }
+      .map(name => this.filter(name, this.planNames));
 
-  filterPlanNames(val: string) {
-    return val ? this.planNames.filter(s => new RegExp(`^${val}`, 'gi').test(s.name))
-      : this.planNames;
+    this.filteredSaleTypes = this.saleTypeCtrl.valueChanges
+      .startWith(this.saleTypeCtrl.value)
+      .map(val => this.displayFn(val))
+      .map(name => this.filter(name, this.saleTypes));
+
+    this.filteredPaqNames = this.paqNameCtrl.valueChanges
+      .startWith(this.paqNameCtrl.value)
+      .map(name => this.filter(name, this.paqNames));
+
+    this.filteredDevSources = this.devSourceCtrl.valueChanges
+      .startWith(this.devSourceCtrl.value)
+      .map(name => this.filter(name, this.devSources));
+
+    this.filteredDevRefs = this.devRefCtrl.valueChanges
+      .startWith(this.devRefCtrl.value)
+      .map(name => this.filter(name, this.devRefs));
+
+
   }
 
   ngOnInit() {
@@ -87,16 +99,49 @@ export class ProductsComponent implements OnInit {
     return value && typeof value === 'object' ? value.name : value;
   }
 
-  filterPlans(val: string) {
-    return val ? this.typePlans.filter(s => new RegExp(`^${val}`, 'gi').test(s.name))
-      : this.typePlans;
+  /** Filtra val en vals, si val null o no existe, retorna vals */
+  filter(val: string, vals: any ) {
+    return val ? vals.filter(s => new RegExp(`^${val}`, 'gi').test(s.name))
+      : vals;
   }
 
   getEscaped(text: string) {
     return _.escape(text);
   }
 
-
+  /** Mirage Data */
+  associateProducts = [
+    { line: '01', plan: 'Plan 1', package: 'Paquete 1', device: 'Nexus', permanence: '12 meses' },
+    { line: '02', plan: 'Plan 2', package: 'Paquete 2', device: 'Iphone', permanence: '12 meses' },
+    { line: '03', plan: 'Plan 3', package: 'Paquete 3', device: 'Moto G5', permanence: '24 meses' }
+  ];
+  saleTypes = [
+    { code: '01', name: 'Nuevo' },
+    { code: '02', name: 'Redencion' },
+    { code: '03', name: 'Adicion' },
+    { code: '04', name: 'Otros' }
+  ];
+  planNames = [
+    { name: 'Claro Corp  TD 3423 Ilim' },
+    { name: 'Claro Corp  Int 2312 Ilim' },
+    { name: '40 GB' },
+    { name: 'Claro Corp Full HD' }
+  ];
+  paqNames = [
+    { name: 'Pq Navegacion 10GB BB' },
+    { name: 'Empremix' },
+    { name: 'KitAmigo' },
+    { name: 'Pq Navegacion 25GB WSP INF' }
+  ];
+  devSources = [
+    { name: 'Comprado' },
+    { name: 'Traido' }
+  ];
+  devRefs = [
+    { name: 'Iphone SE Space Gray' },
+    { name: 'Motorola G5 plus' },
+    { name: 'Samsung J10' }
+  ];
 
 
 }

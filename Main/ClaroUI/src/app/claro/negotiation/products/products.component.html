@@ -17,7 +17,7 @@
         </thead>
         <tbody>
           <tr *ngFor="let item of associateProducts">
-            <td>{{ item.line}} </td>
+            <td>{{ item.line }} </td>
             <td>{{ item.plan }}</td>
             <td>{{ item.package }}</td>
             <td>{{ item.device }}</td>
@@ -195,8 +195,8 @@
           </form>
         </md-tab>
 
-        <md-tab label="Negociación Anterior" [disabled]="!form.valid">
-          <form #form4="ngForm" id="AtPesentYou" name="AtPesentYou" class="AtPesentYou">
+        <md-tab label="Enlace">
+          <form #form4="ngForm">
             <div fxLayout="column" style="padding: 16px;">
               <div fxLayout="row" fxLayoutAlign="end center">
                 <button md-button type="button" (click)="previousStep()" id="previousPagePersonalData">Anterior</button>
@@ -208,8 +208,8 @@
           </form>
         </md-tab>
 
-        <md-tab label="Indicadores" [disabled]="!form.valid">
-          <form #form5="ngForm" id="AtPesentYou" name="AtPesentYou" class="AtPesentYou">
+        <md-tab label="Totales">
+          <form #form5="ngForm">
             <div fxLayout="column" style="padding: 16px;">
               <div fxLayout="row" fxLayoutAlign="end center">
                 <button md-button type="button" (click)="previousStep()" id="previousPagePersonalData">Anterior</button>
@@ -221,7 +221,7 @@
           </form>
         </md-tab>
         <!--  -->
-        <md-tab label="Otros" [disabled]="!form.valid">
+        <md-tab label="Otros">
           <form #form4="ngForm" id="Lifestyle" name="Lifestyle">
             <div fxLayout="column" class="Lifestyle">
               <div fxLayout="row" fxLayoutAlign="end center" style="padding: 16px;">

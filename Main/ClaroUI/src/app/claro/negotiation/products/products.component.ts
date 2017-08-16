@@ -59,7 +59,7 @@ export class ProductsComponent implements OnInit {
     this.filteredSaleTypes = this.saleTypeCtrl.valueChanges
       .startWith(this.saleTypeCtrl.value)
       .map(val => this.displayFn(val))
-      .map(name => this.filter(name, this.saleTypes));
+      .map(type => this.filter(type, this.saleTypes));
 
     this.filteredPaqNames = this.paqNameCtrl.valueChanges
       .startWith(this.paqNameCtrl.value)
@@ -67,13 +67,14 @@ export class ProductsComponent implements OnInit {
 
     this.filteredDevSources = this.devSourceCtrl.valueChanges
       .startWith(this.devSourceCtrl.value)
-      .map(name => this.filter(name, this.devSources));
+      .map(src => this.filter(src, this.devSources));
 
     this.filteredDevRefs = this.devRefCtrl.valueChanges
       .startWith(this.devRefCtrl.value)
-      .map(name => this.filter(name, this.devRefs));
+      .map(ref => this.filter(ref, this.devRefs));
 
-
+      this.device.reqPriceNoIva = this.device.discountRate ? (this.device.fullPriceNoIva * (this.device.discountRate / 100))
+        : this.device.fullPriceNoIva;
   }
 
   ngOnInit() {
@@ -96,11 +97,13 @@ export class ProductsComponent implements OnInit {
   //autocomplete plans 
   //to setting separate control and display value
   displayFn(value: any): string {
-    return value && typeof value === 'object' ? value.name : value;
+    return (value && typeof value === 'object') ? value.name : value;
   }
 
   /** Filtra val en vals, si val null o no existe, retorna vals */
-  filter(val: string, vals: any ) {
+  filter(val: string, vals: any) {
+    // si val=null o vacio (false) return vals, si true, retorna filter...
+    // s guarda todos los elementos de vals; g: global; i:ignoreCase
     return val ? vals.filter(s => new RegExp(`^${val}`, 'gi').test(s.name))
       : vals;
   }
@@ -140,8 +143,10 @@ export class ProductsComponent implements OnInit {
   devRefs = [
     { name: 'Iphone SE Space Gray' },
     { name: 'Motorola G5 plus' },
+    { name: 'Samsung J7 Huella'},
+    { name: 'Motorola Z mods'},
+    { name: 'Huawei P8'},
+    { name: 'Motorola G5 plus'},
     { name: 'Samsung J10' }
   ];
-
-
 }

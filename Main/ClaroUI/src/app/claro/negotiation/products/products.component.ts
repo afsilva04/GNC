@@ -7,6 +7,8 @@ import { ProductPlan } from "../../models/product/product.plan.model";
 import { ProductGeneral } from "../../models/product/product.general.model";
 import { ProductDevice } from "../../models/product/product.device.model";
 import { ProductPackage } from "../../models/product/product.package.model";
+import createNumberMask from './number-mask/createNumberMask';
+
 
 @Component({
   selector: 'app-claro-negotiation-products',
@@ -14,6 +16,9 @@ import { ProductPackage } from "../../models/product/product.package.model";
   styleUrls: ['./products.component.scss']
 })
 export class ProductsComponent implements OnInit {
+
+  //public mask1 =  [/\d/, /\d/, /\d/, /\d/, /\d/, '-', /\d/, /\d/, /\d/];
+
   plan = new ProductPlan();
   general = new ProductGeneral();
   device = new ProductDevice();
@@ -42,8 +47,16 @@ export class ProductsComponent implements OnInit {
 
   private selectedIndexTabTwo = 0;
   position = 'before';
+  public numberMask;
 
   constructor(private snackBar: MdSnackBar) {
+
+    /* Text mask for currency */
+    this.numberMask = createNumberMask({
+      prefix: '$ ',
+      suffix: '' // This will put the dollar sign at the end, with a space.
+    });
+
     /** Inicialization of form controllers */
     this.saleTypeCtrl = new FormControl();
     this.planNameCtrl = new FormControl();
@@ -73,8 +86,8 @@ export class ProductsComponent implements OnInit {
       .startWith(this.devRefCtrl.value)
       .map(ref => this.filter(ref, this.devRefs));
 
-      this.device.reqPriceNoIva = this.device.discountRate ? (this.device.fullPriceNoIva * (this.device.discountRate / 100))
-        : this.device.fullPriceNoIva;
+    this.device.reqPriceNoIva = this.device.discountRate ? (this.device.fullPriceNoIva * (this.device.discountRate / 100))
+      : this.device.fullPriceNoIva;
   }
 
   ngOnInit() {
@@ -143,10 +156,10 @@ export class ProductsComponent implements OnInit {
   devRefs = [
     { name: 'Iphone SE Space Gray' },
     { name: 'Motorola G5 plus' },
-    { name: 'Samsung J7 Huella'},
-    { name: 'Motorola Z mods'},
-    { name: 'Huawei P8'},
-    { name: 'Motorola G5 plus'},
+    { name: 'Samsung J7 Huella' },
+    { name: 'Motorola Z mods' },
+    { name: 'Huawei P8' },
+    { name: 'Motorola G5 plus' },
     { name: 'Samsung J10' }
   ];
 }

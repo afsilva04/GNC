@@ -14,6 +14,7 @@ import { SortablejsModule, SortablejsOptions } from 'angular-sortablejs';
 import { CalendarModule } from 'angular-calendar';
 import { PerfectScrollbarModule } from 'ngx-perfect-scrollbar';
 import { environment } from "../../environments/environment";
+import { TextMaskModule } from 'angular2-text-mask';
 
 // Componets
 import { LoginComponent } from './login/login.component';
@@ -28,6 +29,7 @@ import { ProductsComponent } from './negotiation/products/products.component';
 import { UserService } from "./services/user/user.service";
 import { LocalStorageService } from "angular2-localstorage";
 import { RouteGuard } from './services/routing/route-guard.service';
+
 
 
 @NgModule({
@@ -49,7 +51,8 @@ import { RouteGuard } from './services/routing/route-guard.service';
     SortablejsModule,
     CalendarModule.forRoot(),
     PerfectScrollbarModule.forChild(),
-    ExpansionPanelsModule
+    ExpansionPanelsModule,
+    TextMaskModule
   ],
   declarations: [
     LoginComponent,

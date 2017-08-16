@@ -308,7 +308,7 @@
               <div fxLayout="column" fxLayout.gt-sm="row">
                 <md-input-container fxFlex>
                   <input mdInput name="monthNewLinesAvgBillingValue" id="monthNewLinesAvgBillingValue" [(ngModel)]="other.monthNewLinesAvgBillingValue" disabled placeholder="Valor Promedio Facturación Nueva Línea Mes"
-                  value="{{other.monthNewLinesTotalBillingValue}} / {{other.otherNewLines}}">
+                  value="{{other.monthNewLinesTotalBillingValue / other.otherNewLines}}">
                 </md-input-container>
                 <md-input-container fxFlex>
                   <input mdInput name="riskCustomer" id="riskCustomer" [(ngModel)]="other.riskCustomer" placeholder="Cliente en Riesgo">

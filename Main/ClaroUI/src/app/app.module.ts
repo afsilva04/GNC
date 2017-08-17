@@ -22,6 +22,7 @@ import { LocalStorageService } from "angular2-localstorage";
 
 
 
+
 const perfectScrollbarConfig: PerfectScrollbarConfigInterface = {
   suppressScrollX: true,
   swipePropagation: false

@@ -23,7 +23,7 @@ import { NegotiationComponent } from './negotiation/negotiation.component';
 import { ExpansionPanelsModule } from 'ng2-expansion-panels';
 import { InformationComponent } from './negotiation/information/information.component';
 import { ProductsComponent } from './negotiation/products/products.component';
-
+import { ExistingnegotiationsComponent } from './existingnegotiations/existingnegotiations.component';
 // Providers
 import { UserService } from "./services/user/user.service";
 import { LocalStorageService } from "angular2-localstorage";
@@ -58,7 +58,8 @@ import { RouteGuard } from './services/routing/route-guard.service';
     DialogTerms,
     NegotiationComponent,
     InformationComponent,
-    ProductsComponent
+    ProductsComponent,
+    ExistingnegotiationsComponent
   ],
   entryComponents: [
     DialogTerms

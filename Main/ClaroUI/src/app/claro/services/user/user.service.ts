@@ -9,6 +9,7 @@ import { Observable } from 'rxjs/observable';
 import 'rxjs/add/operator/catch';
 import 'rxjs/add/operator/do';
 import 'rxjs/add/operator/map';
+import { InformationCustomer } from '../../models/information/information.customer.model';
 
 @Injectable()
 export class UserService extends BaseService {
@@ -37,22 +38,6 @@ export class UserService extends BaseService {
 
     return this.http.post(url, JSON.stringify(register), { headers: headers })
       .map((response: Response) => <Response>response)
-
-    //  var headers = new Headers();
-    // headers.append('Content-Type', 'application/x-www-form-urlencoded');
-
-    // let urlSearchParams = new URLSearchParams();
-    // urlSearchParams.append('Email', model.Email);
-    // urlSearchParams.append('Password', model.Password);
-    // urlSearchParams.append('ConfirmPassword', model.ConfirmPassword);
-    // let body = urlSearchParams.toString();
-    // let options = new RequestOptions({ headers: headers });
-
-    // console.log(urlSearchParams);
-
-    // return this.http.post(url, body, options)
-    //   .map((response: Response) => <Response>response)
-
   }
 
   login(model: any): Observable<ILogin[]> {
@@ -61,8 +46,6 @@ export class UserService extends BaseService {
 
     var headers = new Headers();
     headers.append('Content-Type', 'application/x-www-form-urlencoded');
-    //headers.append('Accept', 'application/x-www-form-urlencoded');
-
 
     let urlSearchParams = new URLSearchParams();
     urlSearchParams.append('UserName', model.email);
@@ -75,6 +58,30 @@ export class UserService extends BaseService {
 
     return this.http.post(url, body, options)
       .map((response: Response) => <ILogin[]>response.json())
+
+  }
+
+  insertCustomerInformation(model: InformationCustomer) {
+    let url = environment.API_BASE_URL + 'api/negotiation/InsertCustomerInformation';
+
+    var headers = new Headers();
+    headers.append('Content-Type', 'application/json');
+    headers.append('Accept', 'application/json');
+
+    return this.http.post(url, JSON.stringify(model), { headers: headers })
+      .map((response: Response) => <Response>response)
+  }
+
+
+  getExitingNegotiations() {
+
+    let url = environment.API_BASE_URL + 'api/negotiation/GetExistingNegotiations';
+    var headers = new Headers();
+    headers.append('Content-Type', 'application/json');
+    headers.append('Accept', 'application/json');
+    let options = new RequestOptions({ headers: headers });
+
+    return this.http.get(url, options).map(response => response.json() as InformationCustomer[])
 
   }
 

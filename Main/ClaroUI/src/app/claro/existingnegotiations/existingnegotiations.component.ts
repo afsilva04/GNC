@@ -2,6 +2,14 @@ import { Component, OnInit } from '@angular/core';
 import { Router, ActivatedRoute, ParamMap } from '@angular/router';
 import { InformationCustomer } from '../models/information/information.customer.model';
 
+import { Response } from '@angular/http';
+import { Observable } from 'rxjs/observable';
+import { LocalStorageService } from "angular2-localstorage";
+import { SlimLoadingBarService } from 'ng2-slim-loading-bar';
+import { MdDialogRef, MdDialog } from "@angular/material";
+import { UserService } from "../services/user/user.service";
+import { MdSnackBar } from "@angular/material";
+
 @Component({
   selector: 'app-claro-existingnegotiations',
   templateUrl: './existingnegotiations.component.html',
@@ -12,30 +20,17 @@ import { InformationCustomer } from '../models/information/information.customer.
 export class ExistingnegotiationsComponent implements OnInit {
 
   general = new InformationCustomer();
-  rows = [
-    {
-      type: 'Grupo', nombre: 'Grupo Corona', descripcion: 'FF Junio 2017',
-      creacion: '26 de junio 2017', consultor: 'Samuel Ayala', estado: 'Abierto'
-    },
-    {
-      type: 'Cliente', nombre: 'Servientrega', descripcion: 'FF Marzo 2014',
-      creacion: '20 de Marzo 2014', consultor: 'Samuel Ayala', estado: 'Aprobado'
-    },
-    {
-      type: 'Grupo', nombre: 'Bayer', descripcion: 'FF Abril 2017',
-      creacion: '26 de Abril 2017', consultor: 'Samuel Ayala', estado: 'Rechazado'
-    }
-  ];
+  rows = [ ];
   columns = [
-    { name: 'Tipo', prop: 'type'},
-    { name: 'Nombre' },
-    { name: 'Descripcion' },
-    { name: 'Creacion' },
-    { name: 'Consultor' },
-    { name: 'Estado' }
+    { name: 'Id', prop: 'id'},
+    { name: 'Id usuario', prop: 'idCustomer'},
+    { name: 'Nombre', prop: 'name'},
+    { name: 'Descripción', prop: 'description'},
+    { name: 'Asignación Comercial', prop: 'commercialAssignment'}   
   ];
 
-  constructor(private router: Router) { }
+  constructor(private router: Router,private userService: UserService, private snackBar: MdSnackBar
+    , private localStorageService: LocalStorageService, private slimLoadingBarService: SlimLoadingBarService) { }
 
   /* Se llama cuando se clickea una fila */
   onActivate(event){
@@ -46,13 +41,56 @@ export class ExistingnegotiationsComponent implements OnInit {
   }
 
   ngOnInit() {
+    this.getExitingNegotiations();
   }
 
-  clientes = [
-    { name: 'Claro Corp  TD 3423 Ilim' },
-    { name: 'Claro Corp  Int 2312 Ilim' },
-    { name: '40 GB' },
-    { name: 'Claro Corp Full HD' }
-  ];
+  getExitingNegotiations(){
+
+    this.loading(true);
+    var resutl = this.userService.getExitingNegotiations()
+      .subscribe(value => {
+        this.rows = value;
+        this.loading(false);
+      },
+      error => this.Error(error),
+      () => console.log('complete'));
+  }
+
+
+  loading(load: boolean) {
+    if (load) {
+      this.slimLoadingBarService.start();
+    } else {
+      this.slimLoadingBarService.complete();
+    }
+  }
+
+  private Complete(response: Response) {
+    console.log(response);
+    this.snackBar.open('Informacion registrada con exito.', 'Cerrar', {
+      duration: 3000
+    });
+    this.loading(false);
+  }
+
+  private Error(error: Response) {
+    this.loading(false);
+    console.log(error);
+    if (error.status === 400) {
+      var errorjson = error.json();
+
+      var objLogin = [];
+      for (var key in errorjson) {
+        if (errorjson.hasOwnProperty(key)) {
+          objLogin.push({ key: key, val: errorjson[key] });
+        }
+      }
+      console.log(objLogin);
+
+      this.snackBar.open(objLogin[0].val, 'Cerrar', {
+        duration: 5000
+      });
+    }
+  }
 
 }

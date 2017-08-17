@@ -4,6 +4,14 @@ import * as _ from 'lodash';
 import { fadeInAnimation } from "../../../route.animation";
 import { MdSnackBar } from "@angular/material";
 
+import { Response } from '@angular/http';
+import { Observable } from 'rxjs/observable';
+import { LocalStorageService } from "angular2-localstorage";
+import { SlimLoadingBarService } from 'ng2-slim-loading-bar';
+import { MdDialogRef, MdDialog } from "@angular/material";
+import { UserService } from "../../services/user/user.service";
+
+
 import { InformationCustomer } from "../../models/information/information.customer.model";
 import { InformationDates } from "../../models/information/information.dates.model";
 import { InformationSalesCycle } from "../../models/information/information.salesCycle.model";
@@ -39,7 +47,8 @@ export class InformationComponent implements OnInit {
   position = 'before';
 
 
-  constructor(private snackBar: MdSnackBar) {
+  constructor(private userService: UserService, private snackBar: MdSnackBar
+    , private localStorageService: LocalStorageService, private slimLoadingBarService: SlimLoadingBarService) {
 
     this.customerCtrl = new FormControl({ code: '', name: '' });
     this.reactiveCustomers = this.customerCtrl.valueChanges
@@ -88,6 +97,56 @@ export class InformationComponent implements OnInit {
     { code: '01', name: 'Cliente 1' },
     { code: '02', name: 'Cliente 1' },
   ];
+
+  saveCustomerInformation() {
+    this.loading(true);
+
+    var resutlLogin = this.userService.insertCustomerInformation(this.customer)
+      .subscribe(value => {
+
+        this.Complete(value)
+
+      },
+      error => this.Error(error),
+      () => console.log('complete'));
+
+  }
+
+  loading(load: boolean) {
+    if (load) {
+      this.slimLoadingBarService.start();
+    } else {
+      this.slimLoadingBarService.complete();
+    }
+  }
+
+  private Complete(response: Response) {
+    console.log(response);
+    this.snackBar.open('Informacion registrada con exito.', 'Cerrar', {
+      duration: 3000
+    });
+    this.loading(false);
+  }
+
+  private Error(error: Response) {
+    this.loading(false);
+    console.log(error);
+    if (error.status === 400) {
+      var errorjson = error.json();
+
+      var objLogin = [];
+      for (var key in errorjson) {
+        if (errorjson.hasOwnProperty(key)) {
+          objLogin.push({ key: key, val: errorjson[key] });
+        }
+      }
+      console.log(objLogin);
+
+      this.snackBar.open(objLogin[0].val, 'Cerrar', {
+        duration: 5000
+      });
+    }
+  }
 
 
 }

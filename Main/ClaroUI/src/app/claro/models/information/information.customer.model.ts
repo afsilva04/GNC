@@ -8,6 +8,7 @@ export class InformationCustomer {
     currentLines: string; //LINEAS ACTUALES
     valueArpu: string; //VALOR ARPU
     averageArpuLine: string;//PROMEDIO ARPU POR LINEA
+    creationDate: string;
 
     constructor(model: any = null) {
         if (model) {
@@ -20,6 +21,7 @@ export class InformationCustomer {
             this.currentLines = model.currentLines;
             this.valueArpu = model.valueArpu;
             this.averageArpuLine = model.averageArpuLine;
+            this.creationDate = model.creationDate;
         }
     }
 }

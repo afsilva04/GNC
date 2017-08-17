@@ -1,0 +1,14 @@
+@import '~@swimlane/ngx-datatable/src/themes/material.scss';
+
+.contentexistingnegotiation {
+    margin-top: 20px;
+    max-height: inherit !important;
+     .mat-select-trigger
+      {
+        font-size: 14px !important;
+      }
+      .toolbar{
+          background: #DA1C1C;
+      } 
+
+    }

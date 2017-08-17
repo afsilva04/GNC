@@ -15,6 +15,7 @@ import { CalendarModule } from 'angular-calendar';
 import { PerfectScrollbarModule } from 'ngx-perfect-scrollbar';
 import { environment } from "../../environments/environment";
 import { TextMaskModule } from 'angular2-text-mask';
+import { NgxDatatableModule } from '@swimlane/ngx-datatable';
 
 // Componets
 import { LoginComponent } from './login/login.component';
@@ -52,7 +53,8 @@ import { RouteGuard } from './services/routing/route-guard.service';
     CalendarModule.forRoot(),
     PerfectScrollbarModule.forChild(),
     ExpansionPanelsModule,
-    TextMaskModule
+    TextMaskModule,
+    NgxDatatableModule
   ],
   declarations: [
     LoginComponent,

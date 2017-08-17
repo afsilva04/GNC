@@ -1,3 +1,22 @@
-<p>
-  existingnegotiations works!
-</p>
+<content>
+  <div fxLayout="row" fxLayoutAlign="center center" class="contentexistingnegotiation">
+    <md-card fxFlex="90%" style="padding:0;">
+      <md-toolbar color="primary" class="toolbar">
+        <span>Negociaciones Existentes</span>
+      </md-toolbar>
+      <md-card-content>
+        <ngx-datatable style="padding: 10px;"
+        class="material striped" 
+        [rows]="rows" 
+        [columns]="columns" 
+        [columnMode]="'force'" 
+        [headerHeight]="50" 
+        [footerHeight]="50"
+        [selectionType]="'dblclick'"
+        (activate)="onActivate($event)"
+        [rowHeight]="50">
+        </ngx-datatable>
+      </md-card-content>
+    </md-card>
+  </div>
+</content>

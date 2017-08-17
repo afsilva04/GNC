@@ -45,5 +45,23 @@ namespace ClaroGNCService.Repositories
 
 
         }
+
+        public CustomerInformation GetExistingNegotiation(int id)
+        {
+            try
+            {
+                using (var ctx = new clarogncEntities())
+                {
+                    return ctx.CustomerInformations.Where(x => x.id == id).SingleOrDefault();
+                }
+            }
+            catch (Exception)
+            {
+
+                throw;
+            }
+
+
+        }
     }
 }

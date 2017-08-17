@@ -27,6 +27,16 @@ namespace ClaroGNCService.Controllers
             return service.GetExistingNegotiations();
         }
 
+        // GET api/negotiation/GetExistingNegotiation?id={id}
+        [Route("GetExistingNegotiation")]
+        [AllowAnonymous]
+        [HttpGet]
+        public CustomerInformation GetExistingNegotiations(int id)
+        {
+            NegotiationService service = new NegotiationService();
+            return service.GetExistingNegotiation(id);
+        }
+
 
     }
 }

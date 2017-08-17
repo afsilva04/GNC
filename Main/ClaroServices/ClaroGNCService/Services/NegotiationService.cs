@@ -20,5 +20,12 @@ namespace ClaroGNCService.Services
             return repo.GetExistingNegotiations();
 
         }
+
+        public CustomerInformation GetExistingNegotiation(int id)
+        {
+            NegotiationRepository repo = new NegotiationRepository();
+            return repo.GetExistingNegotiation(id);
+
+        }
     }
 }

@@ -49,117 +49,122 @@ export class ProductsComponent implements OnInit {
   position = 'before';
   public numberMask;
 
-  constructor(private snackBar: MdSnackBar) {
-
-    /* Text mask for currency */
-    this.numberMask = createNumberMask({
-      prefix: '$ ',
-      suffix: '' // This will put the dollar sign at the end, with a space.
-    });
-
-    /** Inicialization of form controllers */
-    this.saleTypeCtrl = new FormControl();
-    this.planNameCtrl = new FormControl();
-    this.paqNameCtrl = new FormControl();
-    this.devSourceCtrl = new FormControl();
-    this.devRefCtrl = new FormControl();
-
-    /** Inicialization of filters */
-    this.filteredPlanNames = this.planNameCtrl.valueChanges
-      .startWith(this.planNameCtrl.value)
-      .map(name => this.filter(name, this.planNames));
-
-    this.filteredSaleTypes = this.saleTypeCtrl.valueChanges
-      .startWith(this.saleTypeCtrl.value)
-      .map(val => this.displayFn(val))
-      .map(type => this.filter(type, this.saleTypes));
-
-    this.filteredPaqNames = this.paqNameCtrl.valueChanges
-      .startWith(this.paqNameCtrl.value)
-      .map(name => this.filter(name, this.paqNames));
-
-    this.filteredDevSources = this.devSourceCtrl.valueChanges
-      .startWith(this.devSourceCtrl.value)
-      .map(src => this.filter(src, this.devSources));
-
-    this.filteredDevRefs = this.devRefCtrl.valueChanges
-      .startWith(this.devRefCtrl.value)
-      .map(ref => this.filter(ref, this.devRefs));
-
-    this.device.reqPriceNoIva = this.device.discountRate ? (this.device.fullPriceNoIva * (this.device.discountRate / 100))
-      : this.device.fullPriceNoIva;
+  discount(full, disc){
+    full = full.replace(/\D+/g, '');
+    return full - (full * (disc / 100));
   }
 
-  ngOnInit() {
-  }
+constructor(private snackBar: MdSnackBar) {
 
-  nextStep() {
-    this.selectedIndexTabTwo += 1;
-  }
+  /* Text mask for currency */
+  this.numberMask = createNumberMask({
+    prefix: '$ ',
+    suffix: '' // This will put the dollar sign at the end, with a space.
+  });
 
-  previousStep() {
-    this.selectedIndexTabTwo -= 1;
-  }
+  /** Inicialization of form controllers */
+  this.saleTypeCtrl = new FormControl();
+  this.planNameCtrl = new FormControl();
+  this.paqNameCtrl = new FormControl();
+  this.devSourceCtrl = new FormControl();
+  this.devRefCtrl = new FormControl();
 
-  saveData() {
-    this.snackBar.open('Datos registrados con exito.', 'Cerrar', {
-      duration: 3000
-    });
-  }
+  /** Inicialization of filters */
+  this.filteredPlanNames = this.planNameCtrl.valueChanges
+    .startWith(this.planNameCtrl.value)
+    .map(name => this.filter(name, this.planNames));
 
-  //autocomplete plans 
-  //to setting separate control and display value
-  displayFn(value: any): string {
-    return (value && typeof value === 'object') ? value.name : value;
-  }
+  this.filteredSaleTypes = this.saleTypeCtrl.valueChanges
+    .startWith(this.saleTypeCtrl.value)
+    .map(val => this.displayFn(val))
+    .map(type => this.filter(type, this.saleTypes));
 
-  /** Filtra val en vals, si val null o no existe, retorna vals */
-  filter(val: string, vals: any) {
-    // si val=null o vacio (false) return vals, si true, retorna filter...
-    // s guarda todos los elementos de vals; g: global; i:ignoreCase
-    return val ? vals.filter(s => new RegExp(`^${val}`, 'gi').test(s.name))
-      : vals;
-  }
+  this.filteredPaqNames = this.paqNameCtrl.valueChanges
+    .startWith(this.paqNameCtrl.value)
+    .map(name => this.filter(name, this.paqNames));
 
-  getEscaped(text: string) {
-    return _.escape(text);
-  }
+  this.filteredDevSources = this.devSourceCtrl.valueChanges
+    .startWith(this.devSourceCtrl.value)
+    .map(src => this.filter(src, this.devSources));
 
-  /** Mirage Data */
-  associateProducts = [
-    { line: '01', plan: 'Plan 1', package: 'Paquete 1', device: 'Nexus', permanence: '12 meses' },
-    { line: '02', plan: 'Plan 2', package: 'Paquete 2', device: 'Iphone', permanence: '12 meses' },
-    { line: '03', plan: 'Plan 3', package: 'Paquete 3', device: 'Moto G5', permanence: '24 meses' }
-  ];
-  saleTypes = [
-    { code: '01', name: 'Nuevo' },
-    { code: '02', name: 'Redencion' },
-    { code: '03', name: 'Adicion' },
-    { code: '04', name: 'Otros' }
-  ];
-  planNames = [
-    { name: 'Claro Corp  TD 3423 Ilim' },
-    { name: 'Claro Corp  Int 2312 Ilim' },
-    { name: '40 GB' },
-    { name: 'Claro Corp Full HD' }
-  ];
-  paqNames = [
-    { name: 'Pq Navegacion 10GB BB' },
-    { name: 'Empremix' },
-    { name: 'KitAmigo' },
-    { name: 'Pq Navegacion 25GB WSP INF' }
-  ];
-  devSources = [
-    { name: 'Comprado' },
-    { name: 'Traido' }
-  ];
-  devRefs = [
-    { name: 'Iphone SE Space Gray' },
-    { name: 'Motorola G5 plus' },
-    { name: 'Samsung J7 Huella' },
-    { name: 'Motorola Z mods' },
-    { name: 'Huawei P8' },
-    { name: 'Motorola G5 plus' },
-    { name: 'Samsung J10' }
-  ];
+  this.filteredDevRefs = this.devRefCtrl.valueChanges
+    .startWith(this.devRefCtrl.value)
+    .map(ref => this.filter(ref, this.devRefs));
+
+  this.device.reqPriceNoIva = this.device.discountRate ? (this.device.fullPriceNoIva * (this.device.discountRate / 100))
+    : this.device.fullPriceNoIva;
+}
+
+ngOnInit() {
+}
+
+nextStep() {
+  this.selectedIndexTabTwo += 1;
+}
+
+previousStep() {
+  this.selectedIndexTabTwo -= 1;
+}
+
+saveData() {
+  this.snackBar.open('Datos registrados con exito.', 'Cerrar', {
+    duration: 3000
+  });
+}
+
+//autocomplete plans 
+//to setting separate control and display value
+displayFn(value: any): string {
+  return (value && typeof value === 'object') ? value.name : value;
+}
+
+/** Filtra val en vals, si val null o no existe, retorna vals */
+filter(val: string, vals: any) {
+  // si val=null o vacio (false) return vals, si true, retorna filter...
+  // s guarda todos los elementos de vals; g: global; i:ignoreCase
+  return val ? vals.filter(s => new RegExp(`^${val}`, 'gi').test(s.name))
+    : vals;
+}
+
+getEscaped(text: string) {
+  return _.escape(text);
+}
+
+/** Mirage Data */
+associateProducts = [
+  { line: '01', plan: 'Plan 1', package: 'Paquete 1', device: 'Nexus', permanence: '12 meses' },
+  { line: '02', plan: 'Plan 2', package: 'Paquete 2', device: 'Iphone', permanence: '12 meses' },
+  { line: '03', plan: 'Plan 3', package: 'Paquete 3', device: 'Moto G5', permanence: '24 meses' }
+];
+saleTypes = [
+  { code: '01', name: 'Nuevo' },
+  { code: '02', name: 'Redencion' },
+  { code: '03', name: 'Adicion' },
+  { code: '04', name: 'Otros' }
+];
+planNames = [
+  { name: 'Claro Corp  TD 3423 Ilim' },
+  { name: 'Claro Corp  Int 2312 Ilim' },
+  { name: '40 GB' },
+  { name: 'Claro Corp Full HD' }
+];
+paqNames = [
+  { name: 'Pq Navegacion 10GB BB' },
+  { name: 'Empremix' },
+  { name: 'KitAmigo' },
+  { name: 'Pq Navegacion 25GB WSP INF' }
+];
+devSources = [
+  { name: 'Comprado' },
+  { name: 'Traido' }
+];
+devRefs = [
+  { name: 'Iphone SE Space Gray' },
+  { name: 'Motorola G5 plus' },
+  { name: 'Samsung J7 Huella' },
+  { name: 'Motorola Z mods' },
+  { name: 'Huawei P8' },
+  { name: 'Motorola G5 plus' },
+  { name: 'Samsung J10' }
+];
 }

@@ -175,13 +175,13 @@
                 </md-input-container>
                 <md-input-container fxFlex>
                   <input mdInput [textMask]="{mask: numberMask}" name="reqPriceNoIva" id="reqPriceNoIva" [(ngModel)]="device.reqPriceNoIva"
-                    placeholder="Precio solicitado sin iva" disabled value="{{device.fullPriceNoIva / device.discountRate}}">
+                    placeholder="Precio solicitado sin iva" disabled [value]="reqPrice">
                 </md-input-container>
               </div>
               <div fxLayout="column" fxLayout.gt-sm="row">
                 <md-input-container fxFlex>
                   <input mdInput [textMask]="{mask: numberMask}" name="fullPriceNoIva" id="fullPriceNoIva" [(ngModel)]="device.fullPriceNoIva"
-                    placeholder="Full precio sin iva">
+                    placeholder="Full precio sin iva" (input)="device.reqPriceNoIva=discount(device.fullPriceNoIva,device.discountRate)">
                 </md-input-container>
                 <div fxFlex></div>
               </div>

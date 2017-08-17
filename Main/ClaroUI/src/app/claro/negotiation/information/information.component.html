@@ -8,7 +8,7 @@
             <div fxLayout="column" style="padding: 16px;">
               <div fxLayout="column" fxLayout.gt-sm="row">
                 <div fxFlex>
-                  <md-input-container>
+                  <!-- <md-input-container>
                     <input mdInput placeholder="Id Cliente/grupo" id="idCustomer" name="idCustomer" [(ngModel)]="customer.idCustomer" [mdAutocomplete]="reactiveAuto"
                       [formControl]="customerCtrl">
                   </md-input-container>
@@ -17,11 +17,14 @@
                       <span>{{ state.name }}</span>
                       <span class="demo-secondary-text"> ({{state.code}}) </span>
                     </md-option>
-                  </md-autocomplete>
+                  </md-autocomplete> -->
+                  <md-input-container fxFlex>
+                    <input mdInput name="name" id="name" [(ngModel)]="customer.idCustomer"  placeholder="Nombre">
+                  </md-input-container>
 
                 </div>
                 <md-input-container fxFlex>
-                  <input mdInput name="name" id="name" [(ngModel)]="customer.name" disabled placeholder="Nombre">
+                  <input mdInput name="name" id="name" [(ngModel)]="customer.name"  placeholder="Nombre">
                 </md-input-container>
               </div>
 
@@ -30,32 +33,32 @@
                   <input mdInput name="description" id="description" [(ngModel)]="customer.identification" required placeholder="Descripción">
                 </md-input-container>
                 <md-input-container fxFlex>
-                  <input mdInput name="commercialAssignment" id="commercialAssignment" [(ngModel)]="customer.commercialAssignment" disabled
+                  <input mdInput name="commercialAssignment" id="commercialAssignment" [(ngModel)]="customer.commercialAssignment" 
                     placeholder="Asignación Comercial">
                 </md-input-container>
               </div>
 
               <div fxLayout="column" fxLayout.gt-sm="row">
                 <md-input-container fxFlex>
-                  <input mdInput name="region" id="region" [(ngModel)]="customer.region" disabled placeholder="Región">
+                  <input mdInput name="region" id="region" [(ngModel)]="customer.region"  placeholder="Región">
                 </md-input-container>
                 <md-input-container fxFlex>
-                  <input mdInput name="subArea" id="subArea" [(ngModel)]="customer.subArea" disabled placeholder="Subzona">
-                </md-input-container>
-              </div>
-
-              <div fxLayout="column" fxLayout.gt-sm="row">
-                <md-input-container fxFlex>
-                  <input mdInput name="currentLines" id="currentLines" [(ngModel)]="customer.currentLines" disabled placeholder="Líneas Actuales">
-                </md-input-container>
-                <md-input-container fxFlex>
-                  <input mdInput name="valueArpu" id="valueArpu" [(ngModel)]="customer.valueArpu" disabled placeholder="Valor Arpu">
+                  <input mdInput name="subArea" id="subArea" [(ngModel)]="customer.subArea"  placeholder="Subzona">
                 </md-input-container>
               </div>
 
               <div fxLayout="column" fxLayout.gt-sm="row">
                 <md-input-container fxFlex>
-                  <input mdInput name="averageArpuLine" id="averageArpuLine" [(ngModel)]="customer.averageArpuLine" disabled placeholder="Promedio Arpu por Línea">
+                  <input mdInput name="currentLines" id="currentLines" [(ngModel)]="customer.currentLines"  placeholder="Líneas Actuales">
+                </md-input-container>
+                <md-input-container fxFlex>
+                  <input mdInput name="valueArpu" id="valueArpu" [(ngModel)]="customer.valueArpu"  placeholder="Valor Arpu">
+                </md-input-container>
+              </div>
+
+              <div fxLayout="column" fxLayout.gt-sm="row">
+                <md-input-container fxFlex>
+                  <input mdInput name="averageArpuLine" id="averageArpuLine" [(ngModel)]="customer.averageArpuLine"  placeholder="Promedio Arpu por Línea">
                 </md-input-container>
                 <div fxFlex>
                 </div>

@@ -4,27 +4,16 @@
       <span>Productos Asociados</span>
     </md-toolbar>
     <md-card-content>
-      <table class="table" [class.table-hover]="tableHover" [class.table-striped]="tableStriped" [class.table-condensed]="tableCondensed"
-        [class.table-bordered]="tableBordered">
-        <thead>
-          <tr>
-            <th>Lineas</th>
-            <th>Plan</th>
-            <th>Paquete</th>
-            <th>Equipo</th>
-            <th>Permanencia</th>
-          </tr>
-        </thead>
-        <tbody>
-          <tr *ngFor="let item of associateProducts">
-            <td>{{ item.line }} </td>
-            <td>{{ item.plan }}</td>
-            <td>{{ item.package }}</td>
-            <td>{{ item.device }}</td>
-            <td>{{ item.permanence }}</td>
-          </tr>
-        </tbody>
-      </table>
+
+    <ngx-datatable style="padding: 10px;"
+        class="material striped" 
+        [rows]="rows" 
+        [columns]="columns" 
+        [columnMode]="'force'" 
+        [headerHeight]="50" 
+        [footerHeight]="50"
+        [rowHeight]="50">
+      </ngx-datatable>
     </md-card-content>
   </md-card>
 </div>

@@ -13,7 +13,8 @@ import createNumberMask from './number-mask/createNumberMask';
 @Component({
   selector: 'app-claro-negotiation-products',
   templateUrl: './products.component.html',
-  styleUrls: ['./products.component.scss']
+  styleUrls: ['./products.component.scss',
+  '../../../../../node_modules/@swimlane/ngx-datatable/src/themes/material.scss']
 })
 export class ProductsComponent implements OnInit {
 
@@ -53,6 +54,9 @@ export class ProductsComponent implements OnInit {
     full = full.replace(/\D+/g, '');
     return full - (full * (disc / 100));
   }
+
+  
+
 
 constructor(private snackBar: MdSnackBar) {
 
@@ -131,11 +135,7 @@ getEscaped(text: string) {
 }
 
 /** Mirage Data */
-associateProducts = [
-  { line: '01', plan: 'Plan 1', package: 'Paquete 1', device: 'Nexus', permanence: '12 meses' },
-  { line: '02', plan: 'Plan 2', package: 'Paquete 2', device: 'Iphone', permanence: '12 meses' },
-  { line: '03', plan: 'Plan 3', package: 'Paquete 3', device: 'Moto G5', permanence: '24 meses' }
-];
+
 saleTypes = [
   { code: '01', name: 'Nuevo' },
   { code: '02', name: 'Redencion' },
@@ -167,4 +167,19 @@ devRefs = [
   { name: 'Motorola G5 plus' },
   { name: 'Samsung J10' }
 ];
+
+rows = [
+  { line: '01', plan: 'Plan 1', package: 'Paquete 1', device: 'Nexus', permanence: '12 meses' },
+  { line: '02', plan: 'Plan 2', package: 'Paquete 2', device: 'Iphone', permanence: '12 meses' },
+  { line: '03', plan: 'Plan 3', package: 'Paquete 3', device: 'Moto G5', permanence: '24 meses' }
+];
+
+columns = [
+    { name: 'Linea', prop: 'line'},
+    { name: 'Plan', prop: 'plan'},
+    { name: 'Paquete', prop: 'package'},
+    { name: 'Equipo', prop: 'device'},
+    { name: 'Permanencia', prop: 'permanence'}   
+  ];
+
 }

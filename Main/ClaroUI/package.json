@@ -27,6 +27,7 @@
     "angular-calendar": "^0.13.5",
     "angular-sortablejs": "^2.0.4",
     "angular2-localstorage": "^0.4.0",
+    "angular2-text-mask": "^8.0.3",
     "core-js": "^2.4.1",
     "css-element-queries": "^0.4.0",
     "d3": "^3.5.17",
@@ -43,6 +44,7 @@
     "rxjs": "^5.1.0",
     "screenfull": "^3.0.2",
     "sortablejs": "^1.5.1",
+    "text-mask-addons": "^3.6.0",
     "ts-helpers": "^1.1.1",
     "zone.js": "^0.8.4"
   },

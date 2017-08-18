@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { Router, ActivatedRoute, ParamMap } from '@angular/router';
+import { Router, ActivatedRoute, ParamMap, NavigationExtras } from '@angular/router';
 import { InformationCustomer } from '../models/information/information.customer.model';
 
 import { Response } from '@angular/http';
@@ -14,29 +14,40 @@ import { MdSnackBar } from "@angular/material";
   selector: 'app-claro-existingnegotiations',
   templateUrl: './existingnegotiations.component.html',
   styleUrls: ['./existingnegotiations.component.scss',
-  '../../../../node_modules/@swimlane/ngx-datatable/src/themes/material.scss'
-]
+    '../../../../node_modules/@swimlane/ngx-datatable/src/themes/material.scss'
+  ]
 })
 export class ExistingnegotiationsComponent implements OnInit {
 
-  general = new InformationCustomer();
-  rows = [ ];
+  customer = new InformationCustomer();
+  rows = [];
+  selected: any;
   columns = [
-    { name: 'Id', prop: 'id'},
-    { name: 'Id usuario', prop: 'idCustomer'},
-    { name: 'Nombre', prop: 'name'},
-    { name: 'Descripción', prop: 'description'},
-    { name: 'Asignación Comercial', prop: 'commercialAssignment'}   
+    { name: 'Id', prop: 'id' },
+    { name: 'Id usuario', prop: 'idCustomer' },
+    { name: 'Nombre', prop: 'name' },
+    { name: 'Descripción', prop: 'description' },
+    { name: 'Asignación Comercial', prop: 'commercialAssignment' }
   ];
 
-  constructor(private router: Router,private userService: UserService, private snackBar: MdSnackBar
+  // Set our navigation extras object
+  // that passes on our global query params and fragment
+
+  /*  navigationExtras: NavigationExtras = {
+     queryParamsHandling: 'preserve',
+     'id': event.row.id;
+   }; */
+
+
+  constructor(private router: Router, private userService: UserService, private snackBar: MdSnackBar
     , private localStorageService: LocalStorageService, private slimLoadingBarService: SlimLoadingBarService) { }
 
   /* Se llama cuando se clickea una fila */
-  onActivate(event){
-    if(event.type === 'dblclick'){
-      console.log("navega a claro-negotiation")
-      this.router.navigate(['claro/negotiation']);
+  onActivate(event) {
+
+    if (event.type === 'dblclick') {
+      console.log('navega a claro-negotiation');
+      this.router.navigate(['/claro/negotiation', { id: event.row.id }]);
     }
   }
 
@@ -44,7 +55,7 @@ export class ExistingnegotiationsComponent implements OnInit {
     this.getExitingNegotiations();
   }
 
-  getExitingNegotiations(){
+  getExitingNegotiations() {
 
     this.loading(true);
     var resutl = this.userService.getExitingNegotiations()

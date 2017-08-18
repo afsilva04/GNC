@@ -85,6 +85,20 @@ export class UserService extends BaseService {
 
   }
 
+  getExisitingNegotiation(id: any) {
+    let url = environment.API_BASE_URL + 'api/negotiation/GetExistingNegotiation';
+    var headers = new Headers();
+    headers.append('Content-Type', 'application/json');
+    headers.append('Accept', 'application/json');
+    let options = new RequestOptions({
+      headers: headers,
+      params: { id: id }
+    });
+
+    return this.http.get(url, options).map(response => response.json() as InformationCustomer)
+
+  }
+
 
 
 }

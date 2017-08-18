@@ -18,6 +18,8 @@ import { InformationSalesCycle } from "../../models/information/information.sale
 import { InformationPreviousNegotiation } from "../../models/information/information.PreviousNegotiation.model";
 import { InformationNegotiationIndicators } from "../../models/information/information.negotiationIndicators.model";
 import { InformationOther } from "../../models/information/information.other.model";
+import { Router, ActivatedRoute, ParamMap } from '@angular/router';
+
 
 @Component({
   selector: 'ms-information',
@@ -48,7 +50,9 @@ export class InformationComponent implements OnInit {
 
 
   constructor(private userService: UserService, private snackBar: MdSnackBar
-    , private localStorageService: LocalStorageService, private slimLoadingBarService: SlimLoadingBarService) {
+    , private localStorageService: LocalStorageService, private slimLoadingBarService: SlimLoadingBarService,
+    private route: ActivatedRoute,
+    private router: Router) {
 
     this.customerCtrl = new FormControl({ code: '', name: '' });
     this.reactiveCustomers = this.customerCtrl.valueChanges
@@ -60,6 +64,10 @@ export class InformationComponent implements OnInit {
   }
 
   ngOnInit() {
+    this.route.paramMap
+    .switchMap((params: ParamMap) =>
+      this.userService.getExisitingNegotiation(params.get('id')))
+    .subscribe((user: InformationCustomer) => this.customer = user);
   }
 
   nextStep() {

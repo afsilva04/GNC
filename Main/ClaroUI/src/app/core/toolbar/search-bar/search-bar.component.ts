@@ -13,7 +13,7 @@ export class SearchBarComponent implements OnInit {
   input: string;
   focused: boolean;
 
-  recentlyVisited: SidenavItem[] = [ ];
+  recentlyVisited: SidenavItem[] = [];
 
   constructor(
     private router: Router,
@@ -38,8 +38,9 @@ export class SearchBarComponent implements OnInit {
         if (index > -1) {
           this.recentlyVisited.splice(index, 1);
         }
-
-        this.recentlyVisited.unshift(item);
+        if (item) {
+          this.recentlyVisited.unshift(item);
+        }
 
         if (this.recentlyVisited.length > 5) {
           this.recentlyVisited.pop();

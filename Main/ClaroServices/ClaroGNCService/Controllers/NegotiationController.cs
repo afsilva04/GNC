@@ -31,7 +31,7 @@ namespace ClaroGNCService.Controllers
         [Route("GetExistingNegotiation")]
         [AllowAnonymous]
         [HttpGet]
-        public CustomerInformation GetExistingNegotiations(int id)
+        public CustomerInformation GetExistingNegotiation(int id)
         {
             NegotiationService service = new NegotiationService();
             return service.GetExistingNegotiation(id);

@@ -64,10 +64,15 @@ export class InformationComponent implements OnInit {
   }
 
   ngOnInit() {
+    let existeParam: boolean;
     this.route.paramMap
-    .switchMap((params: ParamMap) =>
-      this.userService.getExisitingNegotiation(params.get('id')))
-    .subscribe((user: InformationCustomer) => this.customer = user);
+      .subscribe((p: ParamMap) => existeParam = p.has('id'));
+    if (existeParam) {
+      this.route.paramMap
+        .switchMap((params: ParamMap) =>
+          this.userService.getExisitingNegotiation(params.get('id')))
+        .subscribe((user: InformationCustomer) => this.customer = user);
+    }
   }
 
   nextStep() {

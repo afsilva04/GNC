@@ -7,7 +7,6 @@
           <form #form="ngForm" id="customer" name="customer">
             <div fxLayout="column" style="padding: 16px;">
               <div fxLayout="column" fxLayout.gt-sm="row">
-                <div fxFlex>
                   <!-- <md-input-container>
                     <input mdInput placeholder="Id Cliente/grupo" id="idCustomer" name="idCustomer" [(ngModel)]="customer.idCustomer" [mdAutocomplete]="reactiveAuto"
                       [formControl]="customerCtrl">
@@ -21,8 +20,6 @@
                   <md-input-container fxFlex>
                     <input mdInput name="idCustomer" id="idCustomer" [(ngModel)]="customer.idCustomer" required placeholder="Identificacion" type="number">
                   </md-input-container>
-
-                </div>
                 <md-input-container fxFlex>
                   <input mdInput name="name" id="name" [(ngModel)]="customer.name"  placeholder="Nombre">
                 </md-input-container>
